@@ -1,9 +1,7 @@
+import Section from "../UI/Section";
+
 const ProfileCard = (props) => {
-  return (
-    <h1 className={props.className} style={{ backgroundColor: "blue" }}>
-      Profile
-    </h1>
-  );
+  return <Section className={props.className}>Profile</Section>;
 };
 
 export default ProfileCard;

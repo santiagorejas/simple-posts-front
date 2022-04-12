@@ -1,9 +1,7 @@
+import Section from "../UI/Section";
+
 const Categories = (props) => {
-  return (
-    <h1 className={props.className} style={{ backgroundColor: "yellow" }}>
-      Categories
-    </h1>
-  );
+  return <Section className={props.className}>Categories</Section>;
 };
 
 export default Categories;

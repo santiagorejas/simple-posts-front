@@ -1,8 +1,10 @@
+import Section from "../UI/Section";
+
 const SearchBar = (props) => {
   return (
-    <h1 className={props.className} style={{ backgroundColor: "green" }}>
+    <Section className={props.className} style={{ backgroundColor: "green" }}>
       Search Section
-    </h1>
+    </Section>
   );
 };
 

@@ -8,13 +8,15 @@ import SearchBar from "./components/Search Bar/SearchBar";
 import NavBar from "./components/NavBar/NavBar";
 
 function App() {
+  //
+
   return (
     <>
       <NavBar />
       <div className="grid-container">
         <SearchBar className="grid-container__search-bar" />
         <ProfileCard className="grid-container__profile-card" />
-        <Categories className="grid-container__categories" />
+        <Categories className="grid-container__categories" />;
         <Routes>
           <Route
             path="/"

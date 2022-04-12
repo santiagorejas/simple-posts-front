@@ -5,6 +5,7 @@
   min-height: 30rem;
   max-width: 90rem;
   margin: 2.5rem auto;
+  gap: 2rem;
 }
 
 .grid-container__main-section {
@@ -19,6 +20,7 @@
   grid-column-end: 3;
   grid-row-start: 1;
   grid-row-end: 3;
+  height: 100%;
 }
 
 .grid-container__categories {
