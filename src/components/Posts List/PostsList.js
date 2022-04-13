@@ -11,18 +11,20 @@ const PostsList = (props) => {
   console.log("adsasd " + props.items[0].creator.nickname);
 
   return (
-    <Section className={`${props.className} ${classes["posts-list"]}`}>
-      {props.items.map((post) => {
-        return (
-          <PostCard
-            id={post.id}
-            key={post.id}
-            title={post.title}
-            creator={post.creator}
-            image={post.image}
-          />
-        );
-      })}
+    <Section className={`${props.className}`}>
+      <div className={classes["posts-list"]}>
+        {props.items.map((post) => {
+          return (
+            <PostCard
+              id={post.id}
+              key={post.id}
+              title={post.title}
+              creator={post.creator}
+              image={post.image}
+            />
+          );
+        })}
+      </div>
     </Section>
   );
 };
