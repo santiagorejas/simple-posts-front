@@ -7,12 +7,17 @@ import Categories from "./components/Categories/Categories";
 import SearchBar from "./components/Search Bar/SearchBar";
 import NavBar from "./components/NavBar/NavBar";
 import PostDetailPage from "./pages/Post Detail/PostDetailPage";
+import { useAuth } from "./hooks/auth-hook";
+import { AuthContext } from "./context/auth-context";
+import LoginPage from "./pages/Login/LoginPage";
 
 function App() {
-  //
+  const { token, login, logout, userId } = useAuth();
 
   return (
-    <>
+    <AuthContext.Provider
+      value={{ isLoggedIn: !!token, token, login, logout, userId }}
+    >
       <NavBar />
       <div className="grid-container">
         <SearchBar className="grid-container__search-bar" />
@@ -29,9 +34,13 @@ function App() {
               <PostDetailPage className="grid-container__main-section" />
             }
           />
+          <Route
+            path="/login"
+            element={<LoginPage className="grid-container__main-section" />}
+          />
         </Routes>
       </div>
-    </>
+    </AuthContext.Provider>
   );
 }
 

@@ -66,11 +66,11 @@ textarea {
   width: 80%;
 }
 
-.invalid-label {
+.invalid-text {
   font-size: 1rem;
   font-weight: 500;
   color: #c0392b;
-  margin: 1rem;
+  margin: 0.5rem 0;
 }
 
 .form-button {
@@ -81,10 +81,26 @@ textarea {
   background-color: white;
   width: 10rem;
   color: white;
-  background-color: #404252;
   margin: 1rem auto;
 }
 
 .form-button:hover {
   background-color: #282a3a;
+}
+
+.section-title {
+  font-size: 2rem;
+  margin: 2rem;
+  font-weight: 300;
+}
+
+/* MATERIAL UI OVERRIDE */
+
+.form-btn {
+  margin-top: 1rem !important;
+  background-color: #404252 !important;
+}
+
+.form-btn:hover {
+  background-color: #282a3a Im !important;
 }

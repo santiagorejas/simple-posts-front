@@ -15,7 +15,7 @@ const NewComment = (props) => {
         .required("Required."),
     }),
     onSubmit: (values, actions) => {
-      console.log(values);
+      // TODO: POST
       actions.resetForm({
         values: {
           comment: "",
@@ -38,7 +38,7 @@ const NewComment = (props) => {
         value={formik.values.comment}
       />
       {formik.errors.comment && formik.touched.comment ? (
-        <p className="invalid-label">{formik.errors.comment}</p>
+        <p className="invalid-text">{formik.errors.comment}</p>
       ) : null}
       <button
         className={`form-button ${classes["comment__submit-btn"]}`}
