@@ -9,6 +9,21 @@
     height: 100%;
 }
 
+.profile-card__not-logged-in {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.profile-card__not-logged-in h1 {
+    margin-bottom: 1rem;
+    font-weight: 400;
+}
+
 .profile-card__image {
     width: 80%;
 }

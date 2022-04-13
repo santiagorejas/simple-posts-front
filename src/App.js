@@ -10,6 +10,7 @@ import PostDetailPage from "./pages/Post Detail/PostDetailPage";
 import { useAuth } from "./hooks/auth-hook";
 import { AuthContext } from "./context/auth-context";
 import LoginPage from "./pages/Login/LoginPage";
+import SignupPage from "./pages/Signup/SignupPage";
 
 function App() {
   const { token, login, logout, userId } = useAuth();
@@ -37,6 +38,10 @@ function App() {
           <Route
             path="/login"
             element={<LoginPage className="grid-container__main-section" />}
+          />
+          <Route
+            path="/signup"
+            element={<SignupPage className="grid-container__main-section" />}
           />
         </Routes>
       </div>

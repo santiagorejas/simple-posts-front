@@ -1,4 +1,6 @@
+import { Button } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth-context";
 import { useHttp } from "../../hooks/use-http";
 import Section from "../UI/Section";
@@ -7,9 +9,8 @@ import classes from "./ProfileCard.module.css";
 
 const ProfileCard = (props) => {
   const [profileData, setProfileData] = useState(null);
-
+  const navigate = useNavigate();
   const { isLoggedIn, token } = useContext(AuthContext);
-
   const { isLoading, error, clearError, sendRequest } = useHttp();
 
   useEffect(() => {
@@ -31,7 +32,31 @@ const ProfileCard = (props) => {
   }, [sendRequest, isLoggedIn]);
 
   if (!isLoggedIn) {
-    return <Section className={props.className}>Not logged in</Section>;
+    return (
+      <Section className={props.className}>
+        <div className={classes["profile-card__not-logged-in"]}>
+          <h1>Not logged in</h1>
+          <Button
+            className="form-btn"
+            variant="contained"
+            type="submit"
+            margin="normal"
+            onClick={() => navigate("/login")}
+          >
+            Login
+          </Button>
+          <Button
+            className="form-btn"
+            variant="contained"
+            type="submit"
+            margin="normal"
+            onClick={() => navigate("/signup")}
+          >
+            Signup
+          </Button>
+        </div>
+      </Section>
+    );
   }
 
   if (!isLoading && profileData !== null)
