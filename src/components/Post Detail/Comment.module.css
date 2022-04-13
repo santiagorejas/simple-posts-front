@@ -1,0 +1,40 @@
+.comment {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    margin: 2rem;
+    border-bottom: 1px #ccc solid;
+    padding-bottom: 2rem;
+}
+
+.comment__image {
+    max-width: 5rem;
+    max-height: 5rem;
+    width: 15%;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: rgba(0,0,0,0.1) 0.5rem 0.5rem 0.5rem;
+}
+
+.comment__text-container {
+    width: 80%;
+}
+
+.comment__text-container div {
+    display: flex;
+    align-items: center;
+}
+
+.comment__author-nickname {
+    margin: 1rem;
+}
+
+.comment__date {
+    font-weight: 200;
+    font-size: 1rem;
+    margin: 1rem;
+}
+
+.comment__content {
+
+}

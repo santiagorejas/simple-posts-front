@@ -6,6 +6,7 @@ import ProfileCard from "./components/Profile Card/ProfileCard";
 import Categories from "./components/Categories/Categories";
 import SearchBar from "./components/Search Bar/SearchBar";
 import NavBar from "./components/NavBar/NavBar";
+import PostDetailPage from "./pages/Post Detail/PostDetailPage";
 
 function App() {
   //
@@ -20,10 +21,12 @@ function App() {
         <Routes>
           <Route
             path="/"
+            element={<Home className="grid-container__main-section" />}
+          />
+          <Route
+            path="/post/:pid"
             element={
-              <>
-                <Home className="grid-container__main-section" />
-              </>
+              <PostDetailPage className="grid-container__main-section" />
             }
           />
         </Routes>

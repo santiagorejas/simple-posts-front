@@ -1,0 +1,6 @@
+.comment {
+    display: flex;
+    flex-direction: column;
+    margin: 3rem auto;
+    align-items: center;
+}
