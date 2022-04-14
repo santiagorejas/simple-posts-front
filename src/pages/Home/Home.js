@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useHttp } from "../../hooks/use-http";
 
 import PostsList from "../../components/Posts List/PostsList";
+import LoadingSpinner from "../../components/UI/LoadingSpinner";
+import Section from "../../components/UI/Section";
 
 const Home = (props) => {
   const [posts, setPosts] = useState([]);
@@ -23,7 +25,11 @@ const Home = (props) => {
 
   return (
     <>
-      {isLoading && <h1>Loading...</h1>}
+      {isLoading && (
+        <Section className={props.className}>
+          <LoadingSpinner />
+        </Section>
+      )}
       {!isLoading && <PostsList className={props.className} items={posts} />}
     </>
   );
