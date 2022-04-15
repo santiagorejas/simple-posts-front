@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 import "./App.css";
 import Home from "./pages/Home/Home";
@@ -23,10 +23,11 @@ function App() {
       <div className="grid-container">
         <SearchBar className="grid-container__search-bar" />
         <ProfileCard className="grid-container__profile-card" />
-        <Categories className="grid-container__categories" />;
+        <Categories className="grid-container__categories" />
         <Routes>
+          <Route path="/" element={<Navigate to="/post" replace />} />
           <Route
-            path="/"
+            path="/post"
             element={<Home className="grid-container__main-section" />}
           />
           <Route
