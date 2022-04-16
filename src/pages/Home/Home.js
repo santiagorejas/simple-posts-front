@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useHttp } from "../../hooks/use-http";
 
 import PostsList from "../../components/Posts List/PostsList";
@@ -8,27 +8,45 @@ import { useSearchParams } from "react-router-dom";
 
 const Home = (props) => {
   const [posts, setPosts] = useState([]);
+  const [paginationData, setPaginationData] = useState({});
   const { sendRequest, error, clearError, isLoading } = useHttp();
 
   const [searchParams] = useSearchParams();
   const postNameParam = searchParams.get("name");
+  const previousPostNameParam = useRef(postNameParam);
+  const [currentPage, setCurrentPage] = useState(searchParams.get("page"));
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const param = postNameParam ? `&name=${postNameParam}` : "";
+      const param = postNameParam ? `name=${postNameParam}` : "";
 
-      const URL = "http://localhost:5000/api/post?page=1" + param;
-      console.log("URL: " + URL);
+      const URL = `http://localhost:5000/api/post?page=${currentPage}&${param}`;
 
       const data = await sendRequest(URL);
 
-      console.log("WWHGAT " + data.posts);
-
       setPosts(data.posts);
+      setPaginationData({
+        hasNext: data.hasNextPage,
+        hasPrev: data.hasPreviousPage,
+        totalPages: data.totalPages,
+        currentPage: data.currentPage,
+      });
     };
 
+    if (previousPostNameParam.current !== postNameParam) {
+      setCurrentPage(1);
+      previousPostNameParam.current = postNameParam;
+    }
     fetchPosts();
-  }, [sendRequest, postNameParam]);
+  }, [sendRequest, postNameParam, currentPage]);
+
+  const onPageChangeHandler = (event, newPage) => {
+    setCurrentPage(newPage);
+  };
+
+  const sectionTitle = postNameParam
+    ? `Results for '${postNameParam}'`
+    : "Latest posts";
 
   return (
     <>
@@ -37,7 +55,17 @@ const Home = (props) => {
           <LoadingSpinner />
         </Section>
       )}
-      {!isLoading && <PostsList className={props.className} items={posts} />}
+      {!isLoading && (
+        <>
+          <PostsList
+            className={props.className}
+            items={posts}
+            title={sectionTitle}
+            paginationData={paginationData}
+            onPageChange={onPageChangeHandler}
+          />
+        </>
+      )}
     </>
   );
 };
