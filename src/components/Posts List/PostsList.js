@@ -1,13 +1,22 @@
 import { Pagination } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import PostCard from "../Post Card/PostCard";
 import Section from "../UI/Section";
 
 import classes from "./PostsList.module.css";
 
 const PostsList = (props) => {
+  const navigate = useNavigate();
+
   if (props.items.length === 0) {
     return <h1>No items where found.</h1>;
   }
+
+  const onChangePageHandler = (event, pageNumber) => {
+    let currentUrlParams = new URLSearchParams(window.location.search);
+    currentUrlParams.set("page", pageNumber);
+    navigate(window.location.pathname + "?" + currentUrlParams.toString());
+  };
 
   const { paginationData } = props;
 
@@ -31,7 +40,8 @@ const PostsList = (props) => {
         <Pagination
           count={paginationData.totalPages}
           page={paginationData.currentPage}
-          onChange={props.onPageChange}
+          //onChange={props.onPageChange}
+          onChange={onChangePageHandler}
         />
       </div>
     </Section>

@@ -1,0 +1,39 @@
+.categories {
+    padding: 1rem;
+}
+
+.categories__title {
+    font-weight: 300;
+    font-style: italic;
+    font-size: 1.8rem;
+    margin: 1rem;
+}
+
+.categories__container {
+    list-style: none;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.categories__element {
+    margin: 0.4rem 1rem;
+    cursor: pointer;
+    padding: 0.4rem;
+    border-radius: 0.3rem;
+    transition: 300ms ease-in-out all;
+}
+
+.categories__element:hover {
+    background-color: #5b5d6b;
+    color: white;
+}
+
+.categories__element span {
+    margin-left: 0.5rem;
+}
+
+.categories__element--selected {
+    background-color: #282a3a;
+    color: white;
+}

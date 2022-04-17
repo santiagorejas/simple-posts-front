@@ -114,3 +114,8 @@ textarea {
   padding: 1rem;
   border-radius: 0.5rem;
 }
+
+.active {
+  text-decoration: none;
+  background-color: red;
+}

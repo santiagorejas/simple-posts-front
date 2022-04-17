@@ -4,23 +4,30 @@ import { useHttp } from "../../hooks/use-http";
 import PostsList from "../../components/Posts List/PostsList";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
 import Section from "../../components/UI/Section";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const Home = (props) => {
   const [posts, setPosts] = useState([]);
   const [paginationData, setPaginationData] = useState({});
   const { sendRequest, error, clearError, isLoading } = useHttp();
 
+  const navigate = useNavigate();
+
   const [searchParams] = useSearchParams();
-  const postNameParam = searchParams.get("name");
-  const previousPostNameParam = useRef(postNameParam);
-  const [currentPage, setCurrentPage] = useState(searchParams.get("page"));
+  const currentPostName = searchParams.get("name");
+  const currentPage = searchParams.get("page");
+  const currentCategory = searchParams.get("category");
+  const previousPostName = useRef(currentPostName);
+  const previousCategory = useRef(currentCategory);
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const param = postNameParam ? `name=${postNameParam}` : "";
+      const params = new URLSearchParams();
 
-      const URL = `http://localhost:5000/api/post?page=${currentPage}&${param}`;
+      if (currentCategory) params.set("category", currentCategory);
+      if (currentPostName) params.set("name", currentPostName);
+
+      const URL = `http://localhost:5000/api/post?${params.toString()}`;
 
       const data = await sendRequest(URL);
 
@@ -33,19 +40,23 @@ const Home = (props) => {
       });
     };
 
-    if (previousPostNameParam.current !== postNameParam) {
-      setCurrentPage(1);
-      previousPostNameParam.current = postNameParam;
+    if (
+      previousCategory.current !== currentCategory ||
+      previousPostName.current !== currentPostName
+    ) {
+      previousCategory.current = currentCategory;
+      previousPostName.current = currentPostName;
+      let currentUrlParams = new URLSearchParams(window.location.search);
+      currentUrlParams.set("page", 1);
+      navigate(window.location.pathname + "?" + currentUrlParams.toString());
     }
     fetchPosts();
-  }, [sendRequest, postNameParam, currentPage]);
+  }, [sendRequest, currentPostName, currentPage, currentCategory, navigate]);
 
-  const onPageChangeHandler = (event, newPage) => {
-    setCurrentPage(newPage);
-  };
+  const onPageChangeHandler = (event, newPage) => {};
 
-  const sectionTitle = postNameParam
-    ? `Results for '${postNameParam}'`
+  const sectionTitle = currentPostName
+    ? `Results for '${currentPostName}'`
     : "Latest posts";
 
   return (

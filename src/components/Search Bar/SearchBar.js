@@ -19,7 +19,9 @@ const SearchBar = (props) => {
         },
       });
 
-      navigate(`/post?name=${values.searchInput}`);
+      let currentUrlParams = new URLSearchParams(window.location.search);
+      currentUrlParams.set("name", values.searchInput);
+      navigate(window.location.pathname + "?" + currentUrlParams.toString());
     },
   });
 
