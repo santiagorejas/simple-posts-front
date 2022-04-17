@@ -10,6 +10,7 @@ const Categories = (props) => {
     if (window.location.pathname === "/post") {
       let currentUrlParams = new URLSearchParams(window.location.search);
       currentUrlParams.set("category", category);
+      currentUrlParams.set("page", 1);
       navigate(window.location.pathname + "?" + currentUrlParams.toString());
     } else {
       navigate(`/post?category=${category}`);

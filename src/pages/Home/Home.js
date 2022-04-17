@@ -17,17 +17,17 @@ const Home = (props) => {
   const currentPostName = searchParams.get("name");
   const currentPage = searchParams.get("page");
   const currentCategory = searchParams.get("category");
-  const previousPostName = useRef(currentPostName);
-  const previousCategory = useRef(currentCategory);
 
   useEffect(() => {
     const fetchPosts = async () => {
       const params = new URLSearchParams();
 
+      if (currentPage) params.set("page", currentPage);
       if (currentCategory) params.set("category", currentCategory);
       if (currentPostName) params.set("name", currentPostName);
 
       const URL = `http://localhost:5000/api/post?${params.toString()}`;
+      console.log("REQUEST: " + URL);
 
       const data = await sendRequest(URL);
 
@@ -40,16 +40,6 @@ const Home = (props) => {
       });
     };
 
-    if (
-      previousCategory.current !== currentCategory ||
-      previousPostName.current !== currentPostName
-    ) {
-      previousCategory.current = currentCategory;
-      previousPostName.current = currentPostName;
-      let currentUrlParams = new URLSearchParams(window.location.search);
-      currentUrlParams.set("page", 1);
-      navigate(window.location.pathname + "?" + currentUrlParams.toString());
-    }
     fetchPosts();
   }, [sendRequest, currentPostName, currentPage, currentCategory, navigate]);
 

@@ -21,6 +21,7 @@ const SearchBar = (props) => {
 
       let currentUrlParams = new URLSearchParams(window.location.search);
       currentUrlParams.set("name", values.searchInput);
+      currentUrlParams.set("page", 1);
       navigate(window.location.pathname + "?" + currentUrlParams.toString());
     },
   });
