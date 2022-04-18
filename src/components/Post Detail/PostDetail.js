@@ -43,7 +43,7 @@ const PostDetail = (props) => {
             image={comment.author.image}
           />
         ))}
-        <NewComment />
+        <NewComment postId={props.postId} onNewComment={props.onNewComment} />
       </div>
     </Section>
   );

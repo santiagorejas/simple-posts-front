@@ -56,6 +56,7 @@ const SearchBar = (props) => {
             variant="contained"
             type="submit"
             margin="normal"
+            onClick={() => navigate("/post/create")}
             className={`form-btn ${classes["search-bar__btn"]}`}
           >
             <i className="fas fa-plus-square"></i>

@@ -6,7 +6,6 @@ import * as Yup from "yup";
 import Section from "../../components/UI/Section";
 import { AuthContext } from "../../context/auth-context";
 import { useHttp } from "../../hooks/use-http";
-import classes from "./Form.module.css";
 
 const LoginPage = (props) => {
   const { isLoading, error, clearError, sendRequest } = useHttp();
@@ -70,7 +69,7 @@ const LoginPage = (props) => {
       <h1 className="section-title" style={{ textAlign: "center" }}>
         Login Form
       </h1>
-      <form className={classes["form"]} onSubmit={formik.handleSubmit}>
+      <form className="form" onSubmit={formik.handleSubmit}>
         <TextField
           label="Nickname"
           id="nickname"

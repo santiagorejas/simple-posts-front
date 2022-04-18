@@ -34,8 +34,6 @@ const SignupPage = (props) => {
       image: Yup.string(),
     }),
     onSubmit: async (values, actions) => {
-      console.log(values);
-
       const formData = new FormData();
       formData.append("nickname", formik.values.nickname);
       formData.append("email", formik.values.email);

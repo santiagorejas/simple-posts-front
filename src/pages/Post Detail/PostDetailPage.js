@@ -7,6 +7,7 @@ const PostDetailPage = (props) => {
   const postId = useParams().pid;
 
   const [postDetail, setPostDetail] = useState(null);
+  const [comments, setComments] = useState([]);
 
   const { isLoading, error, clearError, sendRequest } = useHttp();
 
@@ -17,23 +18,30 @@ const PostDetailPage = (props) => {
       );
 
       setPostDetail(data.post);
-      console.log(data.post.title);
+      //TODO: comments pagination.
+      setComments(data.post.comments);
     };
 
     fetchPost();
-  }, [sendRequest]);
+  }, [sendRequest, postId]);
+
+  const onNewCommentHandler = (newComment) => {
+    setComments((prev) => (prev = [...prev, newComment]));
+  };
 
   return (
     <>
       {isLoading && <h1>Loading...</h1>}
       {!isLoading && postDetail !== null && (
         <PostDetail
+          postId={postId}
           className={props.className}
           title={postDetail.title}
           image={postDetail.image}
           description={postDetail.description}
-          comments={postDetail.comments}
+          comments={comments}
           creator={postDetail.creator}
+          onNewComment={onNewCommentHandler}
         />
       )}
     </>

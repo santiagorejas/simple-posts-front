@@ -94,6 +94,12 @@ textarea {
   font-weight: 300;
 }
 
+.section-subtitle {
+  font-size: 1.5rem;
+  margin: 1.5rem;
+  font-weight: 300;
+}
+
 /* MATERIAL UI OVERRIDE */
 
 .form-btn {
@@ -104,6 +110,7 @@ textarea {
 .form-btn:hover {
   background-color: #282a3a Im !important;
 }
+
 .form {
   display: flex;
   flex-direction: column;
@@ -113,9 +120,19 @@ textarea {
   border: 1px solid #ccc;
   padding: 1rem;
   border-radius: 0.5rem;
+  background-color: #fefefe;
 }
 
 .active {
   text-decoration: none;
   background-color: red;
+}
+
+.text-area {
+  height: 6rem !important;
+  width: 100%;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  padding: 0.3rem;
+  margin-top: 0.5rem;
 }
