@@ -50,7 +50,7 @@ const SearchBar = (props) => {
             margin="normal"
             className={`form-btn ${classes["search-bar__btn"]}`}
           >
-            <i class="fas fa-search"></i>
+            <i className="fas fa-search"></i>
           </Button>
           <Button
             variant="contained"

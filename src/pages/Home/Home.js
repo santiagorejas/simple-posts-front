@@ -8,7 +8,12 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 
 const Home = (props) => {
   const [posts, setPosts] = useState([]);
-  const [paginationData, setPaginationData] = useState({});
+  const [paginationData, setPaginationData] = useState({
+    hasNext: false,
+    hasPrev: false,
+    totalPages: 0,
+    currentPage: 0,
+  });
   const { sendRequest, error, clearError, isLoading } = useHttp();
 
   const navigate = useNavigate();
@@ -27,9 +32,13 @@ const Home = (props) => {
       if (currentPostName) params.set("name", currentPostName);
 
       const URL = `http://localhost:5000/api/post?${params.toString()}`;
-      console.log("REQUEST: " + URL);
 
-      const data = await sendRequest(URL);
+      let data;
+      try {
+        data = await sendRequest(URL);
+      } catch (err) {
+        console.log(err);
+      }
 
       setPosts(data.posts);
       setPaginationData({

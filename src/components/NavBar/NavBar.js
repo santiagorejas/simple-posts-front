@@ -1,10 +1,12 @@
 import { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth-context";
+import ProfileContext from "../../context/profile-context";
 import classes from "./NavBar.module.css";
 
 const NavBar = (props) => {
   const auth = useContext(AuthContext);
+  const profile = useContext(ProfileContext);
   const navigate = useNavigate();
 
   return (
@@ -15,7 +17,7 @@ const NavBar = (props) => {
       <div className={classes["nav-bar__elements"]}>
         {!auth.isLoggedIn && (
           <div className={classes["nav-bar__element"]}>
-            <i class="fas fa-sign-in-alt"></i>
+            <i className="fas fa-sign-in-alt"></i>
             <NavLink
               to="login"
               className={({ isActive }) =>
@@ -30,7 +32,7 @@ const NavBar = (props) => {
         )}
         {!auth.isLoggedIn && (
           <div className={classes["nav-bar__element"]}>
-            <i class="fas fa-user-plus"></i>
+            <i className="fas fa-user-plus"></i>
             <NavLink
               to="signup"
               className={({ isActive }) =>
@@ -45,8 +47,15 @@ const NavBar = (props) => {
         )}
         {auth.isLoggedIn && (
           <div className={classes["nav-bar__element"]}>
-            <i class="fas fa-sign-out-alt"></i>
-            <p onClick={auth.logout}>Logout</p>
+            <i className="fas fa-sign-out-alt"></i>
+            <p
+              onClick={() => {
+                auth.logout();
+                profile.clearProfile();
+              }}
+            >
+              Logout
+            </p>
           </div>
         )}
       </div>

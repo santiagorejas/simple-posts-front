@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import Section from "../../components/UI/Section";
 import { AuthContext } from "../../context/auth-context";
+import ProfileContext from "../../context/profile-context";
 import { useHttp } from "../../hooks/use-http";
 
 const LoginPage = (props) => {
@@ -13,6 +14,7 @@ const LoginPage = (props) => {
   const navigate = useNavigate();
 
   const auth = useContext(AuthContext);
+  const profile = useContext(ProfileContext);
 
   const formik = useFormik({
     initialValues: {
@@ -29,37 +31,31 @@ const LoginPage = (props) => {
         .min(6, "Password must have at least 6 characters."),
     }),
     onSubmit: async (values, actions) => {
-      console.log(values);
       let data;
       try {
         data = await sendRequest(
           "http://localhost:5000/api/user/login",
           "POST",
           JSON.stringify({
-            nickname: formik.values.nickname,
-            password: formik.values.password,
+            nickname: values.nickname,
+            password: values.password,
           }),
           {
             "Content-Type": "application/json",
           }
         );
-      } catch (err) {}
-
-      actions.resetForm({
-        values: {
-          password: "",
-        },
-      });
-
-      // TODO: borrar luego
-      clearError();
-
-      console.log(error);
-
-      if (!error) {
+        profile.setLikes(data.likes);
         auth.login(data.id, data.token);
 
+        actions.resetForm({
+          values: {
+            password: "",
+          },
+        });
+
         return navigate("/");
+      } catch (err) {
+        console.log(err);
       }
     },
   });

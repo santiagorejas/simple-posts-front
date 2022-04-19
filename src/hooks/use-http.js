@@ -23,7 +23,7 @@ export const useHttp = () => {
         const data = await response.json();
 
         activeHttpRequests.current = activeHttpRequests.current.filter(
-          (req) => req != httpAbortController
+          (req) => req !== httpAbortController
         );
 
         if (!response.ok) {
@@ -36,7 +36,6 @@ export const useHttp = () => {
         setIsLoading(false);
         throw err;
       }
-      setIsLoading(false);
     },
     []
   );
