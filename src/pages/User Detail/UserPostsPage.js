@@ -1,21 +1,23 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
+import { useParams, useSearchParams } from "react-router-dom";
+import PostCard from "../../components/Post Card/PostCard";
+import PostsList from "../../components/Posts List/PostsList";
+import Section from "../../components/UI/Section";
 import { useHttp } from "../../hooks/use-http";
 
-import PostsList from "../../components/Posts List/PostsList";
-import LoadingSpinner from "../../components/UI/LoadingSpinner";
-import Section from "../../components/UI/Section";
-import { useNavigate, useSearchParams } from "react-router-dom";
+const UserPostsPage = (props) => {
+  const userNickname = useParams().uid;
+  const [posts, setPostsList] = useState([]);
+  const { isLoading, error, clearError, sendRequest } = useHttp();
 
-const Home = (props) => {
-  const [posts, setPosts] = useState([]);
   const [paginationData, setPaginationData] = useState({
     hasNext: false,
     hasPrev: false,
     totalPages: 0,
     currentPage: 0,
   });
-  const { sendRequest, error, clearError, isLoading } = useHttp();
 
+  // TODO: posible refactor con Home.
   const [searchParams] = useSearchParams();
   const currentPostName = searchParams.get("name");
   const currentPage = searchParams.get("page");
@@ -34,7 +36,7 @@ const Home = (props) => {
       let data;
       try {
         data = await sendRequest(URL);
-        setPosts(data.posts);
+        setPostsList(data.posts);
         setPaginationData({
           hasNext: data.hasNextPage,
           hasPrev: data.hasPreviousPage,
@@ -47,34 +49,27 @@ const Home = (props) => {
     };
 
     fetchPosts();
-  }, [sendRequest, currentPostName, currentPage, currentCategory]);
-
-  const onPageChangeHandler = (event, newPage) => {};
-
-  const sectionTitle = currentPostName
-    ? `Results for '${currentPostName}'`
-    : "Latest posts";
+  }, [
+    userNickname,
+    sendRequest,
+    currentPage,
+    currentCategory,
+    currentPostName,
+  ]);
 
   return (
-    <>
-      {isLoading && (
-        <Section className={props.className}>
-          <LoadingSpinner />
-        </Section>
-      )}
+    <Section className={props.className}>
+      {isLoading && <p>Loading...</p>}
       {!isLoading && (
-        <>
-          <PostsList
-            className={props.className}
-            items={posts}
-            title={sectionTitle}
-            paginationData={paginationData}
-            onPageChange={onPageChangeHandler}
-          />
-        </>
+        <PostsList
+          className={props.className}
+          items={posts}
+          title={`Posts by ${userNickname}`}
+          paginationData={paginationData}
+        />
       )}
-    </>
+    </Section>
   );
 };
 
-export default Home;
+export default UserPostsPage;

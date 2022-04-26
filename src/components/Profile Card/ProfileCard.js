@@ -54,6 +54,7 @@ const ProfileCard = (props) => {
                 className={classes["profile-card__image"]}
                 src={`http://localhost:5000/${profile.image}`}
                 alt={profile.nickname}
+                onClick={() => navigate(`/user/${profile.nickname}`)}
               />
               <h2 className={classes["profile-card__nickname"]}>
                 {profile.nickname}

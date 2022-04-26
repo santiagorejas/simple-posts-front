@@ -10,11 +10,12 @@ import PostDetailPage from "./pages/Post Detail/PostDetailPage";
 import LoginPage from "./pages/Login/LoginPage";
 import SignupPage from "./pages/Signup/SignupPage";
 import CreatePostPage from "./pages/Create Post/CreatePostPage";
+import UserPostsPage from "./pages/User Detail/UserPostsPage";
 
 function App() {
   return (
     <>
-      <NavBar />
+      <NavBar className="app" />
       <div className="grid-container">
         <SearchBar className="grid-container__search-bar" />
         <ProfileCard className="grid-container__profile-card" />
@@ -44,6 +45,10 @@ function App() {
             element={
               <CreatePostPage className="grid-container__main-section" />
             }
+          />
+          <Route
+            path="/user/:uid"
+            element={<UserPostsPage className="grid-container__main-section" />}
           />
         </Routes>
       </div>

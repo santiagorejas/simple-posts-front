@@ -20,7 +20,6 @@ const PostCard = (props) => {
 
   const onPostClickHandler = (e) => {
     e.preventDefault();
-    if (e.currentTarget !== postRef.current) return;
     const redirectLink = `/post/${props.id}`;
     return navigate(redirectLink);
   };
@@ -38,22 +37,28 @@ const PostCard = (props) => {
 
   return (
     <div className={classes["post-card"]} ref={postRef}>
-      <div
-        style={style}
-        className={classes["post-card__child"]}
+      <img
+        src={`http://localhost:5000/${props.image}`}
+        alt={props.title}
+        className={classes["post-card__image"]}
         onClick={onPostClickHandler}
+      ></img>
+      {auth.isLoggedIn && (
+        <i
+          className={`fas fa-heart ${classes["post-card__like-btn"]} ${heartStyle} ${classes["post-card__element"]}`}
+          onClick={onLikeHandler}
+        ></i>
+      )}
+      <h2
+        className={`${classes["post-card__creator"]} ${classes["post-card__element"]}`}
       >
-        {auth.isLoggedIn && (
-          <i
-            class={`fas fa-heart ${classes["post-card__like-btn"]} ${heartStyle}`}
-            onClick={onLikeHandler}
-          ></i>
-        )}
-        <h2 className={classes["post-card__creator"]}>
-          {props.creator.nickname}
-        </h2>
-        <h1 className={classes["post-card__title"]}>{props.title}</h1>
-      </div>
+        {props.creator.nickname}
+      </h2>
+      <h1
+        className={`${classes["post-card__title"]} ${classes["post-card__element"]}`}
+      >
+        {props.title}
+      </h1>
     </div>
   );
 };

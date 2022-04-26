@@ -1,4 +1,4 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Section from "../UI/Section";
 
 import classes from "./Categories.module.css";
@@ -7,17 +7,16 @@ const Categories = (props) => {
   const navigate = useNavigate();
 
   const changeCategory = (category) => {
-    if (window.location.pathname === "/post") {
+    const pathName = window.location.pathname;
+    if (pathName === "/post" || pathName.startsWith("/user")) {
       let currentUrlParams = new URLSearchParams(window.location.search);
       currentUrlParams.set("category", category);
       currentUrlParams.set("page", 1);
-      navigate(window.location.pathname + "?" + currentUrlParams.toString());
+      navigate(pathName + "?" + currentUrlParams.toString());
     } else {
       navigate(`/post?category=${category}`);
     }
   };
-
-  const [searchParams] = useSearchParams();
 
   return (
     <Section className={`${props.className} ${classes["categories"]}`}>
