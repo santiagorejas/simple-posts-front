@@ -107,6 +107,20 @@ textarea {
   font-weight: 300;
 }
 
+.section-message {
+  font-size: 1rem;
+  font-weight: 300;
+  font-style: italic;
+  padding-top: 5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.section-message i {
+  font-size: 2rem;
+  margin-right: 1rem;
+}
+
 /* MATERIAL UI OVERRIDE */
 
 .form-btn {
@@ -143,3 +157,6 @@ textarea {
   padding: 0.3rem;
   margin-top: 0.5rem;
 }
+
+/**/
+

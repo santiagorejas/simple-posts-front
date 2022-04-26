@@ -9,7 +9,12 @@ const PostsList = (props) => {
   const navigate = useNavigate();
 
   if (props.items.length === 0) {
-    return <h1>No items where found.</h1>;
+    return (
+      <Section className={`${props.className} section-message`}>
+        <i class="fa-solid fa-file-excel"></i>
+        <h1>No posts where found.</h1>
+      </Section>
+    );
   }
 
   const onChangePageHandler = (event, pageNumber) => {

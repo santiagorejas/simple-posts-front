@@ -11,6 +11,7 @@ import LoginPage from "./pages/Login/LoginPage";
 import SignupPage from "./pages/Signup/SignupPage";
 import CreatePostPage from "./pages/Create Post/CreatePostPage";
 import UserPostsPage from "./pages/User Detail/UserPostsPage";
+import NotFoundPage from "./pages/Not Found/NotFoundPage";
 
 function App() {
   return (
@@ -49,6 +50,10 @@ function App() {
           <Route
             path="/user/:uid"
             element={<UserPostsPage className="grid-container__main-section" />}
+          />
+          <Route
+            path="*"
+            element={<NotFoundPage className="grid-container__main-section" />}
           />
         </Routes>
       </div>

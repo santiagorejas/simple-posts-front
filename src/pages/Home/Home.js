@@ -7,7 +7,7 @@ import Section from "../../components/UI/Section";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 const Home = (props) => {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState(null);
   const [paginationData, setPaginationData] = useState({
     hasNext: false,
     hasPrev: false,
@@ -57,12 +57,12 @@ const Home = (props) => {
 
   return (
     <>
-      {isLoading && (
+      {(posts === null || isLoading) && (
         <Section className={props.className}>
           <LoadingSpinner />
         </Section>
       )}
-      {!isLoading && (
+      {posts !== null && !isLoading && (
         <>
           <PostsList
             className={props.className}
