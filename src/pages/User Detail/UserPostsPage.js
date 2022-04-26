@@ -31,7 +31,7 @@ const UserPostsPage = (props) => {
       if (currentCategory) params.set("category", currentCategory);
       if (currentPostName) params.set("name", currentPostName);
 
-      const URL = `http://localhost:5000/api/post?${params.toString()}`;
+      const URL = `http://localhost:5000/api/post/user/${userNickname}?${params.toString()}`;
 
       let data;
       try {
