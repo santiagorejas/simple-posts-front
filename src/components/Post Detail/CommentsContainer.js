@@ -21,8 +21,12 @@ const CommentsContainer = (props) => {
   const currentCommentsPage = +searchParams.get("commentsPage");
 
   const onNewCommentHandler = (newComment) => {
-    if (currentCommentsPage === 1)
+    if (currentCommentsPage === 1 || currentCommentsPage === 0)
       setComments((prev) => (prev = [newComment, ...prev]));
+  };
+
+  const onRemoveCommentHandler = (commentId) => {
+    setComments((prev) => prev.filter((comment) => comment.id !== commentId));
   };
 
   useEffect(() => {
@@ -32,15 +36,17 @@ const CommentsContainer = (props) => {
 
       const URL = `http://localhost:5000/api/comment/${postId}?${params.toString()}`;
 
-      const data = await sendRequest(URL);
+      try {
+        const data = await sendRequest(URL);
 
-      setComments(data.comments);
-      setPaginationData({
-        hasNext: data.hasNextPage,
-        hasPrev: data.hasPreviousPage,
-        totalPages: data.totalPages,
-        currentPage: data.currentPage,
-      });
+        setComments(data.comments);
+        setPaginationData({
+          hasNext: data.hasNextPage,
+          hasPrev: data.hasPreviousPage,
+          totalPages: data.totalPages,
+          currentPage: data.currentPage,
+        });
+      } catch (err) {}
     };
 
     fetchComments();
@@ -64,10 +70,13 @@ const CommentsContainer = (props) => {
         {!isLoading &&
           comments.map((comment) => (
             <Comment
+              id={comment.id}
+              key={comment.id}
               author={comment.author.nickname}
               content={comment.content}
               date={comment.date}
               image={comment.author.image}
+              onRemoveComment={onRemoveCommentHandler}
             />
           ))}
         <div className="pagination-wrapper">

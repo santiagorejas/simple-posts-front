@@ -2,6 +2,7 @@
     list-style: none;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     margin: 2rem;
     border-bottom: 1px #ccc solid;
     padding-bottom: 2rem;
@@ -10,14 +11,14 @@
 .comment__image {
     max-width: 5rem;
     max-height: 5rem;
-    width: 15%;
+    width: 20%;
     object-fit: cover;
     border-radius: 50%;
     box-shadow: rgba(0,0,0,0.1) 0.5rem 0.5rem 0.5rem;
 }
 
 .comment__text-container {
-    width: 80%;
+    width: 75%;
 }
 
 .comment__text-container div {
@@ -26,7 +27,7 @@
 }
 
 .comment__author-nickname {
-    margin: 1rem;
+    margin: 1rem 1rem 1rem 0;
 }
 
 .comment__date {
@@ -37,4 +38,13 @@
 
 .comment__content {
 
+}
+
+.comment__delete-btn {
+    cursor: pointer;
+    width: 5%;
+}
+
+.comment__delete-btn:hover {
+    transform: scale(1.05);
 }

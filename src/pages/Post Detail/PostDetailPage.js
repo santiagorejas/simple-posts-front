@@ -15,13 +15,12 @@ const PostDetailPage = (props) => {
 
   useEffect(() => {
     const fetchPost = async () => {
-      const data = await sendRequest(
-        `http://localhost:5000/api/post/${postId}`
-      );
+      let data;
+      try {
+        data = await sendRequest(`http://localhost:5000/api/post/${postId}`);
+      } catch (err) {}
 
-      setPostDetail(data.post);
-      //TODO: comments pagination.
-      //setComments(data.post.comments);
+      if (data) setPostDetail(data.post);
     };
 
     fetchPost();
