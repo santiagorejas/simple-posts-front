@@ -15,7 +15,7 @@ const PostDetail = (props) => {
         <h1 className={classes["header__title"]}>{title}</h1>
         <div
           className={classes["header__author"]}
-          onClick={() => navigate(`/user/${creator._id}`)}
+          onClick={() => navigate(`/user/${creator.nickname}`)}
         >
           <img
             alt={creator.nickname}

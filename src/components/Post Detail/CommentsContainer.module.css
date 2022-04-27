@@ -4,7 +4,7 @@
 }
 
 .comments-container__comments-section {
-    border: solid 1px #ccc;
+    border: solid 1px var(--grey-1);
     margin: 1rem auto;
     width: 90%;
     border-radius: 0.5rem;

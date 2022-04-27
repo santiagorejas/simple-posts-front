@@ -44,7 +44,7 @@
 .profile-card__counters {
     margin: 1rem;
     text-align: center;
-    background-color: #d2d4da;
+    background-color: var(--grey-1);
     padding: 1rem;
     border-radius: 0.5rem;
     transition: 500ms box-shadow;

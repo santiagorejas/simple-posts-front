@@ -82,6 +82,7 @@ const CommentsContainer = (props) => {
         <div className="pagination-wrapper">
           {paginationData && (
             <Pagination
+              className="pagination"
               count={paginationData.totalPages}
               page={paginationData.currentPage}
               onChange={onChangePageHandler}

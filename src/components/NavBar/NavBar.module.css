@@ -4,7 +4,7 @@
     right: 0%;
     top: 0%;
     z-index: 2;
-    background-color: #f3f4f8;
+    background-color: var(--section-background);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -41,7 +41,7 @@
 
 .nav-bar__link {
     text-decoration: none;
-    color: #101223;
+    color: var(--text);
     padding-bottom: 0.2rem;
 }
 

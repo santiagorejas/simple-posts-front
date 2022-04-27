@@ -20,6 +20,8 @@
 .search-bar__search-input {
     width: 100%;
     margin: 0 !important;
+    background-color: #fefefe;
+    border-radius: 8px;
 }
 
 .search-bar__btn {

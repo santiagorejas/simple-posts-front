@@ -6,15 +6,18 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import ProfileContextProvider from "./context/ProfileContextProvider";
 import AuthContextProvider from "./context/AuthContextProvider";
+import ThemeContextProvider from "./context/ThemeContextProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <AuthContextProvider>
       <ProfileContextProvider>
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
+        <ThemeContextProvider>
+          <React.StrictMode>
+            <App />
+          </React.StrictMode>
+        </ThemeContextProvider>
       </ProfileContextProvider>
     </AuthContextProvider>
   </BrowserRouter>

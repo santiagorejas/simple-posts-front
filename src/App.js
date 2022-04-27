@@ -12,10 +12,14 @@ import SignupPage from "./pages/Signup/SignupPage";
 import CreatePostPage from "./pages/Create Post/CreatePostPage";
 import UserPostsPage from "./pages/User Detail/UserPostsPage";
 import NotFoundPage from "./pages/Not Found/NotFoundPage";
+import { useContext } from "react";
+import ThemeContext from "./context/theme-context";
 
 function App() {
+  const themeCtx = useContext(ThemeContext);
+
   return (
-    <>
+    <div className="app" data-theme={themeCtx.theme === "light" ? "" : "dark"}>
       <NavBar className="app" />
       <div className="grid-container">
         <SearchBar className="grid-container__search-bar" />
@@ -57,7 +61,7 @@ function App() {
           />
         </Routes>
       </div>
-    </>
+    </div>
   );
 }
 

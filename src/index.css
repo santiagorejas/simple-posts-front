@@ -13,11 +13,29 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #e8eaf2;
   
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+:root {
+  --main-background: #e8eaf2;
+  --section-background: #f3f4f8;
+  --text: #0b0c17;
+  --grey-1: #d2d4da;
+}
+
+[data-theme="dark"] {
+  --main-background: #0b0c17;
+  --section-background: #101223;
+  --text: #e8eaf2;
+  --grey-1: #282a3a;
 }

@@ -1,8 +1,7 @@
 .app {
-  background-color: #ffffff;
-opacity: 0.1;
-background: radial-gradient(circle, transparent 20%, #ffffff 20%, #ffffff 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #ffffff 20%, #ffffff 80%, transparent 80%, transparent) 25px 25px, linear-gradient(#444cf7 2px, transparent 2px) 0 -1px, linear-gradient(90deg, #444cf7 2px, #ffffff 2px) -1px 0;
-background-size: 50px 50px, 50px 50px, 25px 25px, 25px 25px;
+  background-color: var(--main-background);
+  color: var(--text);
+  padding-bottom: 3rem;
 }
 
 .grid-container {
@@ -11,7 +10,8 @@ background-size: 50px 50px, 50px 50px, 25px 25px, 25px 25px;
   grid-template-rows: 5rem 18rem auto;
   min-height: 30rem;
   max-width: 90rem;
-  margin: 2.5rem auto;
+  margin-top: 2.5rem;
+  margin-inline: auto;
   gap: 2rem;
 }
 
@@ -162,6 +162,17 @@ textarea {
   font-size: 1rem;
   padding: 0.3rem;
   margin-top: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.text-area,
+.pagination {
+  background-color: #f3f4f8;
+}
+
+.pagination {
+  padding: 0.5rem;
+  border-radius: 1rem;
 }
 
 /**/
