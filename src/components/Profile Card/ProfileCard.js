@@ -54,7 +54,7 @@ const ProfileCard = (props) => {
           <div className={classes["profile-card"]}>
             <img
               className={classes["profile-card__image"]}
-              src={`http://localhost:5000/${profile.image}`}
+              src={`http://localhost:5000/api${profile.image}`}
               alt={profile.nickname}
               onClick={goToUserDetails}
             />

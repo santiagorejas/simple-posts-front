@@ -41,7 +41,7 @@ const Comment = (props) => {
       <div className={classes["comment__image-wrapper"]}>
         <img
           className={classes["comment__image"]}
-          src={`http://localhost:5000/${image}`}
+          src={`http://localhost:5000/api${image}`}
           alt={author}
           onClick={() => navigate(`/user/${author}`)}
         />

@@ -34,7 +34,7 @@ const PostCard = (props) => {
   return (
     <div className={classes["post-card"]} ref={postRef}>
       <img
-        src={`http://localhost:5000/${props.image}`}
+        src={`http://localhost:5000/api${props.image}`}
         alt={props.title}
         className={classes["post-card__image"]}
         onClick={onPostClickHandler}

@@ -19,17 +19,23 @@ const PostDetail = (props) => {
         >
           <img
             alt={creator.nickname}
-            src={`http://localhost:5000/${creator.image}`}
+            src={`http://localhost:5000/api${creator.image}`}
           />
           <h2>{creator.nickname}</h2>
         </div>
       </div>
       <div className={classes["post-detail__image-wrapper"]}>
-        <img
-          className={classes["post-detail__image"]}
-          src={`http://localhost:5000/${image}`}
-          alt={title}
-        />
+        <a
+          href={`http://localhost:5000/api${image}`}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <img
+            className={classes["post-detail__image"]}
+            src={`http://localhost:5000/api${image}`}
+            alt={title}
+          />
+        </a>
       </div>
       <p className={classes["post-detail__description"]}>{description}</p>
       <CommentsContainer postId={props.postId} />

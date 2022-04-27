@@ -46,7 +46,7 @@ const SignupPage = (props) => {
           "POST",
           formData
         );
-        navigate("/");
+        navigate("/login");
       } catch (err) {}
 
       actions.resetForm({
