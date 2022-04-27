@@ -104,6 +104,7 @@ const SignupPage = (props) => {
           label="Password"
           id="password"
           name="password"
+          type="password"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.comment}

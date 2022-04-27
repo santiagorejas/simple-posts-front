@@ -22,6 +22,8 @@ const CreatePostPage = (props) => {
   const navigate = useNavigate();
   const { isLoading, error, clearError, sendRequest } = useHttp();
 
+  if (!auth.isLoggedIn) navigate("/login");
+
   const formik = useFormik({
     initialValues: {
       title: "",

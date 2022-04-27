@@ -7,6 +7,7 @@
     align-items: center;
     justify-content: center;
     height: 100%;
+    cursor: pointer;
 }
 
 .profile-card__not-logged-in {
@@ -26,6 +27,7 @@
 
 .profile-card__image {
     width: 80%;
+    border-radius: 10%;
 }
 
 .profile-card__nickname {
@@ -45,8 +47,13 @@
     background-color: #d2d4da;
     padding: 1rem;
     border-radius: 0.5rem;
+    transition: 500ms box-shadow;
 }
 
 .profile-card__counters p {
     margin-top: 0.5rem
+}
+
+.profile-card__counters:hover {
+    box-shadow: rgba(0,0,0,0.05) 0.3rem 0.3rem 0.3rem;
 }

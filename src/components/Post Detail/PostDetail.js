@@ -24,11 +24,13 @@ const PostDetail = (props) => {
           <h2>{creator.nickname}</h2>
         </div>
       </div>
-      <img
-        className={classes["post-detail__image"]}
-        src={`http://localhost:5000/${image}`}
-        alt={title}
-      />
+      <div className={classes["post-detail__image-wrapper"]}>
+        <img
+          className={classes["post-detail__image"]}
+          src={`http://localhost:5000/${image}`}
+          alt={title}
+        />
+      </div>
       <p className={classes["post-detail__description"]}>{description}</p>
       <CommentsContainer postId={props.postId} />
     </Section>

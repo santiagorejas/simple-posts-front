@@ -7,6 +7,7 @@ import ProfileContext from "../../context/profile-context";
 import Section from "../UI/Section";
 
 import classes from "./ProfileCard.module.css";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 const ProfileCard = (props) => {
   const navigate = useNavigate();
@@ -42,39 +43,44 @@ const ProfileCard = (props) => {
     );
   }
 
-  if (!isLoading && profile !== null)
-    return (
-      <Section className={props.className}>
-        {isLoading && <p>Loading...</p>}
-        {!isLoading &&
-          isLoggedIn &&
-          (profile !== "undefined" || profile !== null) && (
-            <div className={classes["profile-card"]}>
-              <img
-                className={classes["profile-card__image"]}
-                src={`http://localhost:5000/${profile.image}`}
-                alt={profile.nickname}
-                onClick={() => navigate(`/user/${profile.nickname}`)}
-              />
-              <h2 className={classes["profile-card__nickname"]}>
-                {profile.nickname}
-              </h2>
-              <div className={classes["profile-card__counters-container"]}>
-                <div className={classes["profile-card__counters"]}>
-                  <h3>Posts</h3>
-                  <p>{profile.posts.length}</p>
-                </div>
-                <div className={classes["profile-card__counters"]}>
-                  <h3>Likes</h3>
-                  <p>{profile.likes.length}</p>
-                </div>
+  const goToUserDetails = () => navigate(`/user/${profile.nickname}`);
+
+  return (
+    <Section className={props.className}>
+      {isLoading && <LoadingSpinner />}
+      {!isLoading &&
+        isLoggedIn &&
+        (profile !== "undefined" || profile !== null) && (
+          <div className={classes["profile-card"]}>
+            <img
+              className={classes["profile-card__image"]}
+              src={`http://localhost:5000/${profile.image}`}
+              alt={profile.nickname}
+              onClick={goToUserDetails}
+            />
+            <h2
+              className={classes["profile-card__nickname"]}
+              onClick={goToUserDetails}
+            >
+              {profile.nickname}
+            </h2>
+            <div className={classes["profile-card__counters-container"]}>
+              <div
+                className={classes["profile-card__counters"]}
+                onClick={goToUserDetails}
+              >
+                <h3>Posts</h3>
+                <p>{profile.posts.length}</p>
+              </div>
+              <div className={classes["profile-card__counters"]}>
+                <h3>Likes</h3>
+                <p>{profile.likes.length}</p>
               </div>
             </div>
-          )}
-      </Section>
-    );
-
-  return <p>dsaasdsad</p>;
+          </div>
+        )}
+    </Section>
+  );
 };
 
 export default ProfileCard;

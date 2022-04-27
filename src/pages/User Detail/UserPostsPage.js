@@ -10,6 +10,7 @@ const UserPostsPage = (props) => {
   const userNickname = useParams().uid;
   const [posts, setPostsList] = useState(null);
   const { isLoading, error, clearError, sendRequest } = useHttp();
+  const userId = useParams().uid;
 
   const [paginationData, setPaginationData] = useState({
     hasNext: false,
@@ -32,7 +33,7 @@ const UserPostsPage = (props) => {
       if (currentCategory) params.set("category", currentCategory);
       if (currentPostName) params.set("name", currentPostName);
 
-      const URL = `http://localhost:5000/api/post?${params.toString()}`;
+      const URL = `http://localhost:5000/api/post/user/${userId}?${params.toString()}`;
 
       let data;
       try {
@@ -60,11 +61,16 @@ const UserPostsPage = (props) => {
     currentPage,
     currentCategory,
     currentPostName,
+    userId,
   ]);
 
   return (
-    <Section className={props.className}>
-      {posts === null && <LoadingSpinner />}
+    <>
+      {posts === null && (
+        <Section className={props.className}>
+          <LoadingSpinner />
+        </Section>
+      )}
       {posts !== null && (
         <PostsList
           className={props.className}
@@ -73,7 +79,7 @@ const UserPostsPage = (props) => {
           paginationData={paginationData}
         />
       )}
-    </Section>
+    </>
   );
 };
 

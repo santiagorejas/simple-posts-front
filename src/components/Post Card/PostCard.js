@@ -12,10 +12,6 @@ const PostCard = (props) => {
 
   const postRef = useRef();
 
-  const style = {
-    backgroundImage: `url(http://localhost:5000/${props.image})`,
-  };
-
   const liked = profile.postIsLiked(props.id);
 
   const onPostClickHandler = (e) => {
@@ -51,6 +47,7 @@ const PostCard = (props) => {
       )}
       <h2
         className={`${classes["post-card__creator"]} ${classes["post-card__element"]}`}
+        onClick={() => navigate(`/user/${props.creator.nickname}`)}
       >
         {props.creator.nickname}
       </h2>
