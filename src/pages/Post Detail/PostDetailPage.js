@@ -21,7 +21,7 @@ const PostDetailPage = (props) => {
 
       setPostDetail(data.post);
       //TODO: comments pagination.
-      setComments(data.post.comments);
+      //setComments(data.post.comments);
     };
 
     fetchPost();
@@ -45,7 +45,6 @@ const PostDetailPage = (props) => {
           title={postDetail.title}
           image={postDetail.image}
           description={postDetail.description}
-          comments={comments}
           creator={postDetail.creator}
           onNewComment={onNewCommentHandler}
         />

@@ -41,12 +41,11 @@ const PostsList = (props) => {
           );
         })}
       </div>
-      <div className={classes["posts-list__pagination-wrapper"]}>
+      <div className="pagination-wrapper">
         {paginationData && (
           <Pagination
             count={paginationData.totalPages}
             page={paginationData.currentPage}
-            //onChange={props.onPageChange}
             onChange={onChangePageHandler}
           />
         )}

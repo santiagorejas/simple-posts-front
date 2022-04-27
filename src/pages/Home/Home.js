@@ -49,8 +49,6 @@ const Home = (props) => {
     fetchPosts();
   }, [sendRequest, currentPostName, currentPage, currentCategory]);
 
-  const onPageChangeHandler = (event, newPage) => {};
-
   const sectionTitle = currentPostName
     ? `Results for '${currentPostName}'`
     : "Latest posts";
@@ -69,7 +67,6 @@ const Home = (props) => {
             items={posts}
             title={sectionTitle}
             paginationData={paginationData}
-            onPageChange={onPageChangeHandler}
           />
         </>
       )}

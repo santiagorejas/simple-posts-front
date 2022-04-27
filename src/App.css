@@ -121,6 +121,12 @@ textarea {
   margin-right: 1rem;
 }
 
+.pagination-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem;
+}
+
 /* MATERIAL UI OVERRIDE */
 
 .form-btn {

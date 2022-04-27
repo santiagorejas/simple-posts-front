@@ -1,12 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import Section from "../UI/Section";
-import Comment from "./Comment";
-import NewComment from "./NewComment";
+import CommentsContainer from "./CommentsContainer";
 
 import classes from "./PostDetail.module.css";
 
 const PostDetail = (props) => {
-  const { title, image, description, comments, creator } = props;
+  const { title, image, description, creator } = props;
 
   const navigate = useNavigate();
 
@@ -31,20 +30,7 @@ const PostDetail = (props) => {
         alt={title}
       />
       <p className={classes["post-detail__description"]}>{description}</p>
-      <h1 className={classes["post-detail__comments-section-title"]}>
-        Comments Section
-      </h1>
-      <div className={classes["post-detail__comments-section"]}>
-        {comments.map((comment) => (
-          <Comment
-            author={comment.author.nickname}
-            content={comment.content}
-            date={comment.date}
-            image={comment.author.image}
-          />
-        ))}
-        <NewComment postId={props.postId} onNewComment={props.onNewComment} />
-      </div>
+      <CommentsContainer postId={props.postId} />
     </Section>
   );
 };

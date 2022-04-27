@@ -1,0 +1,11 @@
+.comments-container__comments-section-title {
+    margin: 3rem 2rem 2rem 2rem;
+    font-weight: 300;
+}
+
+.comments-container__comments-section {
+    border: solid 1px #ccc;
+    margin: 1rem auto;
+    width: 90%;
+    border-radius: 0.5rem;
+}

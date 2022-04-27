@@ -44,15 +44,3 @@
     margin: 2rem;
     font-size: 1.2rem;
 }
-
-.post-detail__comments-section {
-    border: solid 1px #ccc;
-    margin: 1rem auto;
-    width: 90%;
-    border-radius: 0.5rem;
-}
-
-.post-detail__comments-section-title {
-    margin: 3rem 2rem 2rem 2rem;
-    font-weight: 300;
-}
