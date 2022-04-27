@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import PostCard from "../../components/Post Card/PostCard";
 import PostsList from "../../components/Posts List/PostsList";
+import LoadingSpinner from "../../components/UI/LoadingSpinner";
 import Section from "../../components/UI/Section";
 import { useHttp } from "../../hooks/use-http";
 
 const UserPostsPage = (props) => {
   const userNickname = useParams().uid;
-  const [posts, setPostsList] = useState([]);
+  const [posts, setPostsList] = useState(null);
   const { isLoading, error, clearError, sendRequest } = useHttp();
 
   const [paginationData, setPaginationData] = useState({
@@ -31,18 +32,22 @@ const UserPostsPage = (props) => {
       if (currentCategory) params.set("category", currentCategory);
       if (currentPostName) params.set("name", currentPostName);
 
-      const URL = `http://localhost:5000/api/post/user/${userNickname}?${params.toString()}`;
+      const URL = `http://localhost:5000/api/post?${params.toString()}`;
 
       let data;
       try {
         data = await sendRequest(URL);
-        setPostsList(data.posts);
         setPaginationData({
           hasNext: data.hasNextPage,
           hasPrev: data.hasPreviousPage,
           totalPages: data.totalPages,
           currentPage: data.currentPage,
         });
+        if (data) {
+          setPostsList(data.posts);
+        } else {
+          setPostsList([]);
+        }
       } catch (err) {
         console.log(err);
       }
@@ -59,8 +64,8 @@ const UserPostsPage = (props) => {
 
   return (
     <Section className={props.className}>
-      {isLoading && <p>Loading...</p>}
-      {!isLoading && (
+      {posts === null && <LoadingSpinner />}
+      {posts !== null && (
         <PostsList
           className={props.className}
           items={posts}
