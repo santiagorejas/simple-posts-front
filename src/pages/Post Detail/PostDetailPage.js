@@ -33,9 +33,9 @@ const PostDetailPage = (props) => {
   return (
     <>
       {(postDetail === null || isLoading) && (
-        <Section className={props.className}>
+        <div className={props.className}>
           <LoadingSpinner />
-        </Section>
+        </div>
       )}
       {!isLoading && postDetail !== null && (
         <PostDetail

@@ -1,4 +1,4 @@
-import { Button, TextareaAutosize, TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth-context";
@@ -54,17 +54,16 @@ const NewComment = (props) => {
     <>
       <h2 className="section-subtitle">Add comment</h2>
       <form className={classes["comment"]} onSubmit={formik.handleSubmit}>
-        <TextareaAutosize
-          label="Comment"
+        <TextField
           id="comment"
           name="comment"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.comment}
-          autoComplete="off"
-          margin="normal"
-          className={"text-area"}
           style={{ width: "90%" }}
+          className="form__input "
+          multiline
+          rows={4}
         />
         {formik.errors.comment && formik.touched.comment ? (
           <p className="invalid-text">{formik.errors.comment}</p>

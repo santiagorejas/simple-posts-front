@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import Section from "../UI/Section";
 import CommentsContainer from "./CommentsContainer";
 
 import classes from "./PostDetail.module.css";
@@ -10,7 +9,7 @@ const PostDetail = (props) => {
   const navigate = useNavigate();
 
   return (
-    <Section className={`${props.className} ${classes["post-detail"]}`}>
+    <div className={`${props.className} ${classes["post-detail"]}`}>
       <div className={classes["post-detail__header"]}>
         <h1 className={classes["header__title"]}>{title}</h1>
         <div
@@ -39,7 +38,7 @@ const PostDetail = (props) => {
       </div>
       <p className={classes["post-detail__description"]}>{description}</p>
       <CommentsContainer postId={props.postId} />
-    </Section>
+    </div>
   );
 };
 

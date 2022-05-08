@@ -63,10 +63,10 @@ const PostsList = (props) => {
 
   if (posts.length === 0) {
     return (
-      <Section className={`${props.className} section-message`}>
+      <div className={`${props.className} section-message`}>
         <i class="fa-solid fa-file-excel"></i>
         <h1>No posts where found.</h1>
-      </Section>
+      </div>
     );
   }
 
@@ -77,7 +77,7 @@ const PostsList = (props) => {
   };
 
   return (
-    <Section className={`${props.className}`}>
+    <div className={`${props.className}`}>
       <h1 className="section-title">{props.title}</h1>
       <div className={classes["posts-list"]}>
         {posts.map((post) => {
@@ -102,7 +102,7 @@ const PostsList = (props) => {
           />
         )}
       </div>
-    </Section>
+    </div>
   );
 };
 

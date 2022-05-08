@@ -3,7 +3,6 @@ import { useFormik } from "formik";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import Section from "../../components/UI/Section";
 import { AuthContext } from "../../context/auth-context";
 import ProfileContext from "../../context/profile-context";
 import { useHttp } from "../../hooks/use-http";
@@ -61,7 +60,7 @@ const LoginPage = (props) => {
   });
 
   return (
-    <Section className={props.className}>
+    <div className={props.className}>
       <h1 className="section-title" style={{ textAlign: "center" }}>
         Login Form
       </h1>
@@ -102,7 +101,7 @@ const LoginPage = (props) => {
           Login
         </Button>
       </form>
-    </Section>
+    </div>
   );
 };
 

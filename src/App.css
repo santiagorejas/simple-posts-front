@@ -127,11 +127,18 @@ textarea {
   margin: 1.5rem;
 }
 
+.form__input {
+  width: 100%;
+  margin: 0 !important;
+  background-color: #fefefe;
+  border-radius: 4px;
+}
+
 /* MATERIAL UI OVERRIDE */
 
 .form-btn {
   margin-top: 1rem !important;
-  background-color: #404252 !important;
+  background-color: #2f3144 !important;
 }
 
 .form-btn:hover {

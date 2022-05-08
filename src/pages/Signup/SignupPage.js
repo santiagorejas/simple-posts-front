@@ -2,7 +2,6 @@ import { useRef, useState } from "react";
 import { Button, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import Section from "../../components/UI/Section";
 import { useNavigate } from "react-router-dom";
 import { useHttp } from "../../hooks/use-http";
 import { useAuth } from "../../hooks/auth-hook";
@@ -69,7 +68,7 @@ const SignupPage = (props) => {
   };
 
   return (
-    <Section className={props.className}>
+    <div className={props.className}>
       <h1 className="section-title" style={{ textAlign: "center" }}>
         Signup Form
       </h1>
@@ -131,7 +130,7 @@ const SignupPage = (props) => {
           Signup
         </Button>
       </form>
-    </Section>
+    </div>
   );
 };
 

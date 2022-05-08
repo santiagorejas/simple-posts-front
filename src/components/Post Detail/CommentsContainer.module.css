@@ -4,7 +4,8 @@
 }
 
 .comments-container__comments-section {
-    border: solid 1px var(--grey-1);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 1rem;
     margin: 1rem auto;
     width: 90%;
     border-radius: 0.5rem;
