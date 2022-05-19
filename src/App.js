@@ -16,33 +16,50 @@ import { useContext } from "react";
 import ThemeContext from "./context/theme-context";
 import LikedPostsPage from "./components/Liked Posts/LikedPostsPage";
 import Section from "./components/UI/Section";
+import EditAccountPage from "./pages/Edit Account/EditAccountPage";
 
 function App() {
-  const themeCtx = useContext(ThemeContext);
+    const themeCtx = useContext(ThemeContext);
 
-  return (
-    <div className="app" data-theme={themeCtx.theme === "light" ? "" : "dark"}>
-      <NavBar className="app" />
-      <div className="grid-container">
-        <SearchBar className="grid-container__search-bar" />
-        <ProfileCard className="grid-container__profile-card" />
-        <Categories className="grid-container__categories" />
-        <Section className="grid-container__main-section">
-          <Routes>
-            <Route path="/" element={<Navigate to="/post" replace />} />
-            <Route path="/post" element={<Home />} />
-            <Route path="/post/:pid" element={<PostDetailPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/signup" element={<SignupPage />} />
-            <Route path="/post/create" element={<CreatePostPage />} />
-            <Route path="/user/:uid/likes" element={<LikedPostsPage />} />
-            <Route path="/user/:uid" element={<UserPostsPage />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </Section>
-      </div>
-    </div>
-  );
+    return (
+        <div
+            className="app"
+            data-theme={themeCtx.theme === "light" ? "" : "dark"}
+        >
+            <NavBar className="app" />
+            <div className="grid-container">
+                <SearchBar className="grid-container__search-bar" />
+                <ProfileCard className="grid-container__profile-card" />
+                <Categories className="grid-container__categories" />
+                <Section className="grid-container__main-section">
+                    <Routes>
+                        <Route
+                            path="/"
+                            element={<Navigate to="/post" replace />}
+                        />
+                        <Route path="/post" element={<Home />} />
+                        <Route path="/post/:pid" element={<PostDetailPage />} />
+                        <Route path="/login" element={<LoginPage />} />
+                        <Route path="/signup" element={<SignupPage />} />
+                        <Route
+                            path="/post/create"
+                            element={<CreatePostPage />}
+                        />
+                        <Route
+                            path="/user/:uid/likes"
+                            element={<LikedPostsPage />}
+                        />
+                        <Route path="/user/:uid" element={<UserPostsPage />} />
+                        <Route path="*" element={<NotFoundPage />} />
+                        <Route
+                            path="/edit-account"
+                            element={<EditAccountPage />}
+                        />
+                    </Routes>
+                </Section>
+            </div>
+        </div>
+    );
 }
 
 export default App;

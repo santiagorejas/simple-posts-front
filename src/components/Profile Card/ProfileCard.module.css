@@ -3,7 +3,7 @@
     flex-direction: column;
     width: 80%;
     margin: auto;
-    padding: 2rem;
+    padding: 1rem;
     align-items: center;
     justify-content: center;
     height: 100%;
@@ -26,12 +26,16 @@
 }
 
 .profile-card__image {
-    width: 80%;
-    border-radius: 10%;
+    width: 11rem;
+    height: 11rem;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 .profile-card__nickname {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 300;
     margin-bottom: 1rem;
 }
@@ -42,18 +46,34 @@
 }
 
 .profile-card__counters {
-    margin: 1rem;
+    margin: 0.8rem;
     text-align: center;
-    background-color: var(--grey-1);
+    background-color: var(--grey-2);
     padding: 1rem;
     border-radius: 0.5rem;
-    transition: 500ms box-shadow;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 
 .profile-card__counters p {
-    margin-top: 0.5rem
+    margin-top: 0.5rem;
 }
 
-.profile-card__counters:hover {
-    box-shadow: rgba(0,0,0,0.05) 0.3rem 0.3rem 0.3rem;
+.profile-card__counters h3 {
+    font-size: 1rem;
+}
+
+.profile-card__edit-account-btn {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: transparent;
+    border: var(--grey-1) solid 1px;
+    border-radius: 0.5rem;
+    color: var(--text);
+    cursor: pointer;
+
+}
+
+.profile-card__edit-account-btn p {
+    margin-left: 0.5rem;
 }

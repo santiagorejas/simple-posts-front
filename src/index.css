@@ -31,6 +31,7 @@ code {
   --section-background: #f3f4f8;
   --text: #0b0c17;
   --grey-1: #d2d4da;
+  --grey-2: #e5e6e9;
 }
 
 [data-theme="dark"] {
