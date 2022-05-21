@@ -41,9 +41,12 @@ const LikesContextProvider = (props) => {
             return;
         }
 
+        console.log(likes);
+
         if (likes.includes(postId)) {
             return;
         }
+        console.log("A1");
 
         setLikes((prev) => [...prev, postId]);
 
@@ -70,9 +73,13 @@ const LikesContextProvider = (props) => {
             return;
         }
 
+        console.log("A11");
+
         if (!likes.includes(postId)) {
             return;
         }
+
+        console.log("A12");
 
         setLikes((prev) => prev.filter((p) => p !== postId));
 
