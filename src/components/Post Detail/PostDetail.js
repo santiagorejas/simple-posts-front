@@ -64,7 +64,12 @@ const PostDetail = (props) => {
                         <span>Like</span>
                     </button>
                     {profile.nickname === creator.nickname && (
-                        <button className={classes["post-detail__btn"]}>
+                        <button
+                            className={classes["post-detail__btn"]}
+                            onClick={() =>
+                                navigate(`/post/edit/${props.postId}`)
+                            }
+                        >
                             <i class="fa-solid fa-pen"></i>
                             <span>Edit</span>
                         </button>

@@ -17,6 +17,7 @@ import ThemeContext from "./context/theme-context";
 import LikedPostsPage from "./components/Liked Posts/LikedPostsPage";
 import Section from "./components/UI/Section";
 import EditAccountPage from "./pages/Edit Account/EditAccountPage";
+import EditPostPage from "./pages/Edit Post/EditPostPage";
 
 function App() {
     const themeCtx = useContext(ThemeContext);
@@ -54,6 +55,10 @@ function App() {
                         <Route
                             path="/edit-account"
                             element={<EditAccountPage />}
+                        />
+                        <Route
+                            path="/post/edit/:pid"
+                            element={<EditPostPage />}
                         />
                     </Routes>
                 </Section>
