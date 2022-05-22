@@ -14,10 +14,14 @@ const ProfileCard = (props) => {
     const { isLoggedIn, token } = useContext(AuthContext);
     const { isLoading, error, clearError, sendRequest } = useHttp();
     const profile = useContext(ProfileContext);
+    const auth = useContext(AuthContext);
 
     if (!isLoggedIn) {
         return (
-            <Section className={props.className}>
+            <Section
+                className={props.className}
+                style={{ order: "-1", padding: "1rem" }}
+            >
                 <div className={classes["profile-card__not-logged-in"]}>
                     <h1>Not logged in</h1>
                     <Button
@@ -46,24 +50,61 @@ const ProfileCard = (props) => {
     const goToUserDetails = () => navigate(`/user/${profile.nickname}`);
 
     return (
-        <Section className={props.className}>
+        <Section
+            className={props.className}
+            style={{ order: "-1", padding: "1rem" }}
+        >
             {isLoading && <LoadingSpinner />}
             {!isLoading &&
                 isLoggedIn &&
                 (profile !== "undefined" || profile !== null) && (
                     <div className={classes["profile-card"]}>
-                        <img
-                            className={classes["profile-card__image"]}
-                            src={`http://localhost:5000/api${profile.image}`}
-                            alt={profile.nickname}
-                            onClick={goToUserDetails}
-                        />
-                        <h2
-                            className={classes["profile-card__nickname"]}
-                            onClick={goToUserDetails}
-                        >
-                            {profile.nickname}
-                        </h2>
+                        <div className={classes["profile-card__main-info"]}>
+                            <img
+                                className={classes["profile-card__image"]}
+                                src={`http://localhost:5000/api${profile.image}`}
+                                alt={profile.nickname}
+                                onClick={goToUserDetails}
+                            />
+                            <h2
+                                className={classes["profile-card__nickname"]}
+                                onClick={goToUserDetails}
+                            >
+                                {profile.nickname}
+                            </h2>
+
+                            <div
+                                className={
+                                    classes["profile-card__account-btns"]
+                                }
+                            >
+                                <button
+                                    className={
+                                        classes[
+                                            "profile-card__edit-account-btn"
+                                        ]
+                                    }
+                                    onClick={() => navigate("/edit-account")}
+                                >
+                                    <i class="fa-solid fa-gear"></i>
+                                    <p>Edit Account</p>
+                                </button>
+                                <button
+                                    className={
+                                        classes[
+                                            "profile-card__edit-account-btn"
+                                        ]
+                                    }
+                                    onClick={() => {
+                                        auth.logout();
+                                        profile.clearProfile();
+                                    }}
+                                >
+                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                    <p>Log Out</p>
+                                </button>
+                            </div>
+                        </div>
                         <div
                             className={
                                 classes["profile-card__counters-container"]
@@ -81,15 +122,6 @@ const ProfileCard = (props) => {
                                 <p>{profile.likes.length}</p>
                             </div>
                         </div>
-                        <button
-                            className={
-                                classes["profile-card__edit-account-btn"]
-                            }
-                            onClick={() => navigate("/edit-account")}
-                        >
-                            <i class="fa-solid fa-gear"></i>
-                            <p>Edit Account</p>
-                        </button>
                     </div>
                 )}
         </Section>

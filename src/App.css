@@ -8,6 +8,7 @@
   display: grid;
   grid-template-columns: 2.5fr 1fr;
   grid-template-rows: 5rem 18rem auto;
+  width: 90%;
   min-height: 30rem;
   max-width: 90rem;
   margin-top: 2.5rem;
@@ -186,3 +187,15 @@ textarea {
 
 /**/
 
+@media(max-width: 75rem) {
+  .grid-container {
+    width: 95%;
+  }
+}
+
+@media(max-width: 60rem) {
+  .grid-container {
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -1,13 +1,14 @@
 .post-card {
-    margin: 1rem;
-    height: 18rem;
-    width: 12rem;
+    height: 100%;
+    width: 100%;
     color: white;
     border-radius: 0.5rem;
     cursor: pointer;
     position: relative;
     transition: 300ms transform;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    align-self: center;
+    justify-self: center;
 }
 
 .post-card:hover {
@@ -83,3 +84,4 @@
 .post-card__like-btn:hover {
     color: #c0392b;
 }
+

@@ -28,3 +28,9 @@
     height: 85%;
     margin: 0!important;
 }
+
+@media(max-width: 65rem) {
+    .search-bar {
+        order: 2;
+    }
+}

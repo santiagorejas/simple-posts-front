@@ -49,3 +49,9 @@
 .active {
     border-bottom: 3px solid #282a3a;
 }
+
+@media (max-width: 35rem) {
+    .nav-bar__element {
+        display: none;
+    }
+}

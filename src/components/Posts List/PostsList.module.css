@@ -1,6 +1,38 @@
 .posts-list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 20rem);
     width: 95%;
     margin: auto;
+    align-content: center;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+@media(max-width: 85rem) {
+    .posts-list {
+        grid-template-rows: repeat(4, 16rem);
+    }
+}
+
+@media(max-width: 75rem) {
+    .posts-list {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(4, 20rem);
+    }
+}
+
+@media(max-width: 45rem) {
+
+    .posts-list {
+        grid-template-rows: repeat(4, 16rem);
+        gap: 1rem;
+    }
+}
+
+@media(max-width: 35rem) {
+    .posts-list {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(6, 18rem);
+    }
 }

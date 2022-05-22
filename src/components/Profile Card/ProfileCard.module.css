@@ -25,6 +25,14 @@
     font-weight: 400;
 }
 
+.profile-card__main-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    padding: 1rem 2rem;
+}
+
 .profile-card__image {
     width: 11rem;
     height: 11rem;
@@ -38,6 +46,7 @@
     font-size: 1.8rem;
     font-weight: 300;
     margin-bottom: 1rem;
+    text-align: center;
 }
 
 .profile-card__counters-container {
@@ -46,7 +55,7 @@
 }
 
 .profile-card__counters {
-    margin: 0.8rem;
+    margin: 0 0.3rem;
     text-align: center;
     background-color: var(--grey-2);
     padding: 1rem;
@@ -62,6 +71,10 @@
     font-size: 1rem;
 }
 
+.profile-card__account-btns {
+    display: flex;
+}
+
 .profile-card__edit-account-btn {
     display: flex;
     align-items: center;
@@ -71,9 +84,31 @@
     border-radius: 0.5rem;
     color: var(--text);
     cursor: pointer;
+    width: 7.5rem;
+    margin: 0.1rem;
 
 }
 
 .profile-card__edit-account-btn p {
     margin-left: 0.5rem;
+}
+
+@media(max-width: 60rem) {
+
+    .profile-card__counters {
+        margin: 0.5rem;
+    }
+
+    .profile-card {
+        flex-direction: row;
+    }
+
+    .profile-card__counters-container {
+        flex-direction: column;
+        width: 30%;
+    }
+
+    .profile-card__counters {
+        width: 100%;
+    }
 }
