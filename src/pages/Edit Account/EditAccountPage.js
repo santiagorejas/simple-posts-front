@@ -24,7 +24,7 @@ const EditAccountPage = (props) => {
 
             try {
                 const data = await sendRequest(
-                    "http://localhost:5000/api/user/edit-account",
+                    `${process.env.REACT_APP_BACKEND_URL}api/user/edit-account`,
                     "PATCH",
                     formData,
                     {

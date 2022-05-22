@@ -46,7 +46,7 @@ const CreatePostPage = (props) => {
             formData.append("image", pickedFile);
 
             const data = await sendRequest(
-                "http://localhost:5000/api/post",
+                "${process.env.REACT_APP_BACKEND_URL}api/post",
                 "POST",
                 formData,
                 {

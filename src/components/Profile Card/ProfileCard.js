@@ -62,7 +62,7 @@ const ProfileCard = (props) => {
                         <div className={classes["profile-card__main-info"]}>
                             <img
                                 className={classes["profile-card__image"]}
-                                src={`http://localhost:5000/api${profile.image}`}
+                                src={`${process.env.REACT_APP_BACKEND_URL}api${profile.image}`}
                                 alt={profile.nickname}
                                 onClick={goToUserDetails}
                             />

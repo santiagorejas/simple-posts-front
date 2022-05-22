@@ -18,7 +18,7 @@ const PostDetailPage = (props) => {
             let data;
             try {
                 data = await sendRequest(
-                    `http://localhost:5000/api/post/${postId}`
+                    `${process.env.REACT_APP_BACKEND_URL}api/post/${postId}`
                 );
             } catch (err) {}
 

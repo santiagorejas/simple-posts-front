@@ -15,7 +15,7 @@ const LikesContextProvider = (props) => {
         const fetchProfileData = async () => {
             try {
                 const data = await sendRequest(
-                    `http://localhost:5000/api/user/profile/${auth.userId}`
+                    `${process.env.REACT_APP_BACKEND_URL}api/user/profile/${auth.userId}`
                 );
 
                 setNickname(data.profile.nickname);
@@ -52,7 +52,7 @@ const LikesContextProvider = (props) => {
 
         try {
             const data = await sendRequest(
-                `http://localhost:5000/api/post/like/${postId}`,
+                `${process.env.REACT_APP_BACKEND_URL}api/post/like/${postId}`,
                 "POST",
                 JSON.stringify({
                     like: true,
@@ -85,7 +85,7 @@ const LikesContextProvider = (props) => {
 
         try {
             const data = await sendRequest(
-                `http://localhost:5000/api/post/like/${postId}`,
+                `${process.env.REACT_APP_BACKEND_URL}api/post/like/${postId}`,
                 "POST",
                 JSON.stringify({
                     like: false,

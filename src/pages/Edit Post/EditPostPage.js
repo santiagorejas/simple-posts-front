@@ -36,7 +36,7 @@ const EditPostPage = (props) => {
         onSubmit: async (values, actions) => {
             try {
                 const data = await sendRequest(
-                    `http://localhost:5000/api/post/${postId}`,
+                    `${process.env.REACT_APP_BACKEND_URL}api/post/${postId}`,
                     "PATCH",
                     JSON.stringify({
                         title: values.title,
@@ -56,7 +56,7 @@ const EditPostPage = (props) => {
         const getPostDetails = async () => {
             try {
                 const data = await sendRequest(
-                    `http://localhost:5000/api/post/${postId}`
+                    `${process.env.REACT_APP_BACKEND_URL}api/post/${postId}`
                 );
 
                 if (data.post.creator._id !== userId) {

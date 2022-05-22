@@ -35,20 +35,20 @@ const PostDetail = (props) => {
                 >
                     <img
                         alt={creator.nickname}
-                        src={`http://localhost:5000/api${creator.image}`}
+                        src={`${process.env.REACT_APP_BACKEND_URL}api${creator.image}`}
                     />
                     <h2>{creator.nickname}</h2>
                 </div>
             </div>
             <div className={classes["post-detail__image-wrapper"]}>
                 <a
-                    href={`http://localhost:5000/api${image}`}
+                    href={`${process.env.REACT_APP_BACKEND_URL}api${image}`}
                     target="_blank"
                     rel="noreferrer"
                 >
                     <img
                         className={classes["post-detail__image"]}
-                        src={`http://localhost:5000/api${image}`}
+                        src={`${process.env.REACT_APP_BACKEND_URL}api${image}`}
                         alt={title}
                     />
                 </a>
