@@ -10,3 +10,14 @@
     width: 90%;
     border-radius: 0.5rem;
 }
+
+
+@media (max-width: 30rem) {
+
+
+    .comments-container__comments-section {
+        width: 95%;
+        word-wrap: break-word;
+    }
+    
+}

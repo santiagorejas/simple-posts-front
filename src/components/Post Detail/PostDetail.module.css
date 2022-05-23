@@ -80,3 +80,26 @@
 .post-detail__btn span {
     margin-left: 0.5rem;
 }
+
+@media (max-width: 60rem) {
+    .header__title {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .header__author, .header__title {
+        margin: 1rem;
+    }
+}
+
+@media (max-width: 30rem) {
+    .post-detail__header {
+        display: block;
+    }
+
+    .post-detail__description {
+        width: 95%;
+        word-wrap: break-word;
+    }
+    
+}
