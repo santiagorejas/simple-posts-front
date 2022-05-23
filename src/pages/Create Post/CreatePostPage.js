@@ -46,7 +46,7 @@ const CreatePostPage = (props) => {
             formData.append("image", pickedFile);
 
             const data = await sendRequest(
-                "${process.env.REACT_APP_BACKEND_URL}api/post",
+                `${process.env.REACT_APP_BACKEND_URL}api/post`,
                 "POST",
                 formData,
                 {
@@ -67,7 +67,7 @@ const CreatePostPage = (props) => {
     };
 
     return (
-        <Section className={props.className}>
+        <div className={props.className}>
             <h1 className="section-title" style={{ textAlign: "center" }}>
                 Create Post
             </h1>
@@ -142,7 +142,7 @@ const CreatePostPage = (props) => {
                     Create Post
                 </Button>
             </form>
-        </Section>
+        </div>
     );
 };
 
