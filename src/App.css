@@ -1,7 +1,15 @@
 .app {
   background-color: var(--main-background);
+  background-image: url('./resources/background/main_background_light.svg');
+  aspect-ratio: 16/9;
+  background-position: center;
+  background-size: cover;
   color: var(--text);
   padding-bottom: 3rem;
+}
+
+.app[data-theme="dark"] {
+  background-image: url('./resources/background/main_background_dark.svg');
 }
 
 .grid-container {
@@ -46,6 +54,7 @@
   grid-row-end: 2;
   height: 100%;
 }
+
 
 .form-element, .form-button {
   font-family: 'Montserrat', 'sans-serif';
@@ -206,4 +215,28 @@ textarea {
     display: flex;
     flex-direction: column;
   }
+
+  .app {
+    background-image: url('./resources/background/main_background_light_60rem.svg');
+    aspect-ratio: 1/1;
+  }
+
+  .app[data-theme="dark"] {
+    background-image: url('./resources/background/main_background_dark_60rem.svg');
+    aspect-ratio: 1/1;
+  }
+}
+
+@media (max-width: 30rem) {
+
+  .app {
+    background-color: url('./resources/background/main_background_light_30rem.svg');
+    aspect-ratio: 9/16;
+  }
+
+  .app[data-theme="dark"] {
+    background-color: url('./resources/background/main_background_dark_30rem.svg');
+    aspect-ratio: 9/16;
+  }
+  
 }
