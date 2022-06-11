@@ -14,8 +14,11 @@
 
 .nav-bar__logo {
     margin: 0 1rem;
-    font-style: italic;
     cursor: pointer;
+}
+
+.nav-bar__logo i {
+    margin-right: 0.2rem;
 }
 
 .nav-bar__elements {

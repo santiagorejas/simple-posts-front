@@ -71,7 +71,8 @@ const NavBar = (props) => {
                 className={classes["nav-bar__logo"]}
                 onClick={() => navigate("/")}
             >
-                SimplePosts
+                <i class="fa-solid fa-paper-plane"></i>
+                <span>SimplePosts</span>
             </h1>
             <div className={classes["nav-bar__elements"]}>
                 {!auth.isLoggedIn && (
