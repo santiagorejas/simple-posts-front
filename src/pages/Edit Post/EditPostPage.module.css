@@ -9,12 +9,19 @@
     gap: 1rem;
 }
 
-.edit-post__return-btn {
+.edit-post__btn {
     font-weight: bold;
     font-size: 1rem;
-    font-style: italic;
     background: none;
-    border: none;
+    border: 1px solid #ccc;
+    padding: 0.7rem;
+    border-radius: 0.5rem;
+    margin: 0.5rem;
     cursor: pointer;
     color: var(--text);
+    background-color: var(--grey-1);
+}
+
+.edit-post__btn i {
+    margin-right: 0.3rem;
 }

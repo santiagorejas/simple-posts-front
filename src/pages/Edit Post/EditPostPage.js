@@ -52,6 +52,21 @@ const EditPostPage = (props) => {
         },
     });
 
+    const deletePost = async () => {
+        try {
+            const data = await sendRequest(
+                `${process.env.REACT_APP_BACKEND_URL}api/post/${postId}`,
+                "DELETE",
+                null,
+                {
+                    Authorization: `Bearer ${token}`,
+                }
+            );
+
+            navigate("/post");
+        } catch (err) {}
+    };
+
     useEffect(() => {
         const getPostDetails = async () => {
             try {
@@ -144,12 +159,22 @@ const EditPostPage = (props) => {
                     </Button>
                 </form>
             )}
-            <button
-                onClick={() => navigate(`/post/${postId}`)}
-                className={classes["edit-post__return-btn"]}
-            >
-                Return to post
-            </button>
+            <div className={classes["edit-psot__btns"]}>
+                <button
+                    onClick={deletePost}
+                    className={classes["edit-post__btn"]}
+                >
+                    <i class="fa-solid fa-trash"></i>
+                    <span>Delete to post</span>
+                </button>
+                <button
+                    onClick={() => navigate(`/post/${postId}`)}
+                    className={classes["edit-post__btn"]}
+                >
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Return to post</span>
+                </button>
+            </div>
         </div>
     );
 };
