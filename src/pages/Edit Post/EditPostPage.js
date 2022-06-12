@@ -8,6 +8,7 @@ import * as Yup from "yup";
 import { Button, MenuItem, Select, TextField } from "@mui/material";
 import classes from "./EditPostPage.module.css";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
+import Modal from "../../components/UI/Modal";
 
 const EditPostPage = (props) => {
     const postId = useParams().pid;
@@ -91,91 +92,98 @@ const EditPostPage = (props) => {
     }, [postId, sendRequest, userId]);
 
     return (
-        <div className={classes["edit-post"]}>
-            <h1 className="section-title">Edit Post</h1>
-            {isLoading && <LoadingSpinner />}
-            {!isLoading && (
-                <form
-                    className={`form ${classes["edit-post__form"]}`}
-                    onSubmit={formik.handleSubmit}
-                >
-                    <TextField
-                        label="Title"
-                        id="title"
-                        name="title"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.title}
-                        autoComplete="off"
-                        disabled={!hasAcces}
-                    />
-                    {formik.errors.title && formik.touched.title && (
-                        <p className="invalid-text">{formik.errors.title}</p>
-                    )}
-                    <Select
-                        label="Category"
-                        id="category"
-                        name="category"
-                        value={formik.values.category}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        autoComplete="off"
-                        disabled={!hasAcces}
+        <>
+            {error && <Modal onClose={clearError}>{error}</Modal>}
+            <div className={classes["edit-post"]}>
+                <h1 className="section-title">Edit Post</h1>
+                {isLoading && <LoadingSpinner />}
+                {!isLoading && (
+                    <form
+                        className={`form ${classes["edit-post__form"]}`}
+                        onSubmit={formik.handleSubmit}
                     >
-                        {categories.map((category) => (
-                            <MenuItem value={category} key={category}>
-                                {category.charAt(0).toUpperCase() +
-                                    category.slice(1)}
-                            </MenuItem>
-                        ))}
-                    </Select>
-                    {formik.errors.category && formik.touched.category && (
-                        <p className="invalid-text">{formik.errors.category}</p>
-                    )}
-                    <TextField
-                        id="description"
-                        name="description"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.description}
-                        className="form__input "
-                        multiline
-                        rows={4}
-                        disabled={!hasAcces}
-                    />
-                    {formik.errors.description &&
-                        formik.touched.description && (
+                        <TextField
+                            label="Title"
+                            id="title"
+                            name="title"
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            value={formik.values.title}
+                            autoComplete="off"
+                            disabled={!hasAcces}
+                        />
+                        {formik.errors.title && formik.touched.title && (
                             <p className="invalid-text">
-                                {formik.errors.description}
+                                {formik.errors.title}
                             </p>
                         )}
-                    <Button
-                        className="form-btn"
-                        variant="contained"
-                        type="submit"
-                        disabled={!hasAcces}
+                        <Select
+                            label="Category"
+                            id="category"
+                            name="category"
+                            value={formik.values.category}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            autoComplete="off"
+                            disabled={!hasAcces}
+                        >
+                            {categories.map((category) => (
+                                <MenuItem value={category} key={category}>
+                                    {category.charAt(0).toUpperCase() +
+                                        category.slice(1)}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                        {formik.errors.category && formik.touched.category && (
+                            <p className="invalid-text">
+                                {formik.errors.category}
+                            </p>
+                        )}
+                        <TextField
+                            id="description"
+                            name="description"
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            value={formik.values.description}
+                            className="form__input "
+                            multiline
+                            rows={4}
+                            disabled={!hasAcces}
+                        />
+                        {formik.errors.description &&
+                            formik.touched.description && (
+                                <p className="invalid-text">
+                                    {formik.errors.description}
+                                </p>
+                            )}
+                        <Button
+                            className="form-btn"
+                            variant="contained"
+                            type="submit"
+                            disabled={!hasAcces}
+                        >
+                            Edit Post
+                        </Button>
+                    </form>
+                )}
+                <div className={classes["edit-psot__btns"]}>
+                    <button
+                        onClick={deletePost}
+                        className={classes["edit-post__btn"]}
                     >
-                        Edit Post
-                    </Button>
-                </form>
-            )}
-            <div className={classes["edit-psot__btns"]}>
-                <button
-                    onClick={deletePost}
-                    className={classes["edit-post__btn"]}
-                >
-                    <i class="fa-solid fa-trash"></i>
-                    <span>Delete to post</span>
-                </button>
-                <button
-                    onClick={() => navigate(`/post/${postId}`)}
-                    className={classes["edit-post__btn"]}
-                >
-                    <i class="fa-solid fa-arrow-left"></i>
-                    <span>Return to post</span>
-                </button>
+                        <i class="fa-solid fa-trash"></i>
+                        <span>Delete to post</span>
+                    </button>
+                    <button
+                        onClick={() => navigate(`/post/${postId}`)}
+                        className={classes["edit-post__btn"]}
+                    >
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>Return to post</span>
+                    </button>
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 

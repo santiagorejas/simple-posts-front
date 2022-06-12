@@ -19,6 +19,6 @@
 }
 
 .search-bar__btn {
-    background-color: #2f3144 !important;
+    background-color: var(--blue-1) !important;
     margin: 0!important;
 }

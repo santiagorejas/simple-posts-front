@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useHttp } from "../../hooks/use-http";
 import LoadingSpinner from "../UI/LoadingSpinner";
+import Modal from "../UI/Modal";
 import Comment from "./Comment";
 import classes from "./CommentsContainer.module.css";
 import NewComment from "./NewComment";
@@ -66,6 +67,7 @@ const CommentsContainer = (props) => {
 
     return (
         <>
+            {error && <Modal onClose={clearError}>{error}</Modal>}
             <h1
                 className={
                     classes["comments-container__comments-section-title"]

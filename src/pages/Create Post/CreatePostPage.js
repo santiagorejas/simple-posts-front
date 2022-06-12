@@ -14,6 +14,7 @@ import { useHttp } from "../../hooks/use-http";
 import classes from "./CreatePostPage.module.css";
 import { AuthContext } from "../../context/auth-context";
 import { useNavigate } from "react-router-dom";
+import Modal from "../../components/UI/Modal";
 
 const CreatePostPage = (props) => {
     const [pickedFile, setPickedFile] = useState(null);
@@ -67,82 +68,88 @@ const CreatePostPage = (props) => {
     };
 
     return (
-        <div className={props.className}>
-            <h1 className="section-title" style={{ textAlign: "center" }}>
-                Create Post
-            </h1>
-            <form className="form" onSubmit={formik.handleSubmit}>
-                <TextField
-                    label="Title"
-                    id="title"
-                    name="title"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.title}
-                    autoComplete="off"
-                    margin="normal"
-                />
-                {formik.errors.title && formik.touched.title && (
-                    <p className="invalid-text">{formik.errors.title}</p>
-                )}
-                <Select
-                    label="Category"
-                    id="category"
-                    name="category"
-                    value={formik.values.category}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    autoComplete="off"
-                    className={classes["select"]}
-                >
-                    {categories.map((category) => (
-                        <MenuItem value={category} key={category}>
-                            {category.charAt(0).toUpperCase() +
-                                category.slice(1)}
-                        </MenuItem>
-                    ))}
-                </Select>
-                {formik.errors.category && formik.touched.category && (
-                    <p className="invalid-text">{formik.errors.category}</p>
-                )}
-                <Button
-                    onClick={() => {
-                        fileInput.current.click();
-                    }}
-                >
-                    Upload File
-                </Button>
-                <input
-                    ref={fileInput}
-                    type="file"
-                    style={{ display: "none" }}
-                    accept=".jpg,.png,.jpeg"
-                    onChange={pickedHandler}
-                />
-                <TextareaAutosize
-                    label="Description"
-                    id="description"
-                    name="description"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.description}
-                    autoComplete="off"
-                    margin="normal"
-                    className={classes["description"]}
-                />
-                {formik.errors.description && formik.touched.description && (
-                    <p className="invalid-text">{formik.errors.description}</p>
-                )}
-                <Button
-                    className="form-btn"
-                    variant="contained"
-                    type="submit"
-                    margin="normal"
-                >
+        <>
+            {error && <Modal onClose={clearError}>{error}</Modal>}
+            <div className={props.className}>
+                <h1 className="section-title" style={{ textAlign: "center" }}>
                     Create Post
-                </Button>
-            </form>
-        </div>
+                </h1>
+                <form className="form" onSubmit={formik.handleSubmit}>
+                    <TextField
+                        label="Title"
+                        id="title"
+                        name="title"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.title}
+                        autoComplete="off"
+                        margin="normal"
+                    />
+                    {formik.errors.title && formik.touched.title && (
+                        <p className="invalid-text">{formik.errors.title}</p>
+                    )}
+                    <Select
+                        label="Category"
+                        id="category"
+                        name="category"
+                        value={formik.values.category}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        autoComplete="off"
+                        className={classes["select"]}
+                    >
+                        {categories.map((category) => (
+                            <MenuItem value={category} key={category}>
+                                {category.charAt(0).toUpperCase() +
+                                    category.slice(1)}
+                            </MenuItem>
+                        ))}
+                    </Select>
+                    {formik.errors.category && formik.touched.category && (
+                        <p className="invalid-text">{formik.errors.category}</p>
+                    )}
+                    <Button
+                        onClick={() => {
+                            fileInput.current.click();
+                        }}
+                    >
+                        Upload File
+                    </Button>
+                    <input
+                        ref={fileInput}
+                        type="file"
+                        style={{ display: "none" }}
+                        accept=".jpg,.png,.jpeg"
+                        onChange={pickedHandler}
+                    />
+                    <TextareaAutosize
+                        label="Description"
+                        id="description"
+                        name="description"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.description}
+                        autoComplete="off"
+                        margin="normal"
+                        className={classes["description"]}
+                    />
+                    {formik.errors.description &&
+                        formik.touched.description && (
+                            <p className="invalid-text">
+                                {formik.errors.description}
+                            </p>
+                        )}
+                    <Button
+                        className="form-btn"
+                        variant="contained"
+                        type="submit"
+                        margin="normal"
+                    >
+                        Create Post
+                    </Button>
+                </form>
+            </div>
+        </>
     );
 };
 

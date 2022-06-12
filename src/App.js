@@ -11,6 +11,7 @@ import NavBar from "./components/NavBar/NavBar";
 
 import "./App.css";
 import LoadingSpinner from "./components/UI/LoadingSpinner";
+import Modal from "./components/UI/Modal";
 
 const PostDetailPage = React.lazy(() =>
     import("./pages/Post Detail/PostDetailPage")

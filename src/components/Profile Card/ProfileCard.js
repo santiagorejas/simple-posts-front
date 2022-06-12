@@ -12,7 +12,6 @@ import LoadingSpinner from "../UI/LoadingSpinner";
 const ProfileCard = (props) => {
     const navigate = useNavigate();
     const { isLoggedIn, token } = useContext(AuthContext);
-    const { isLoading, error, clearError, sendRequest } = useHttp();
     const profile = useContext(ProfileContext);
     const auth = useContext(AuthContext);
 
@@ -54,76 +53,63 @@ const ProfileCard = (props) => {
             className={props.className}
             style={{ order: "-1", padding: "1rem" }}
         >
-            {isLoading && <LoadingSpinner />}
-            {!isLoading &&
-                isLoggedIn &&
-                (profile !== "undefined" || profile !== null) && (
-                    <div className={classes["profile-card"]}>
-                        <div className={classes["profile-card__main-info"]}>
-                            <img
-                                className={classes["profile-card__image"]}
-                                src={`${process.env.REACT_APP_BACKEND_URL}api${profile.image}`}
-                                alt={profile.nickname}
-                                onClick={goToUserDetails}
-                            />
-                            <h2
-                                className={classes["profile-card__nickname"]}
-                                onClick={goToUserDetails}
-                            >
-                                {profile.nickname}
-                            </h2>
-
-                            <div
-                                className={
-                                    classes["profile-card__account-btns"]
-                                }
-                            >
-                                <button
-                                    className={
-                                        classes[
-                                            "profile-card__edit-account-btn"
-                                        ]
-                                    }
-                                    onClick={() => navigate("/edit-account")}
-                                >
-                                    <i class="fa-solid fa-gear"></i>
-                                    <p>Edit Account</p>
-                                </button>
-                                <button
-                                    className={
-                                        classes[
-                                            "profile-card__edit-account-btn"
-                                        ]
-                                    }
-                                    onClick={() => {
-                                        auth.logout();
-                                        profile.clearProfile();
-                                    }}
-                                >
-                                    <i class="fa-solid fa-right-from-bracket"></i>
-                                    <p>Log Out</p>
-                                </button>
-                            </div>
-                        </div>
-                        <div
-                            className={
-                                classes["profile-card__counters-container"]
-                            }
+            {isLoggedIn && (profile !== "undefined" || profile !== null) && (
+                <div className={classes["profile-card"]}>
+                    <div className={classes["profile-card__main-info"]}>
+                        <img
+                            className={classes["profile-card__image"]}
+                            src={`${process.env.REACT_APP_BACKEND_URL}api${profile.image}`}
+                            alt={profile.nickname}
+                            onClick={goToUserDetails}
+                        />
+                        <h2
+                            className={classes["profile-card__nickname"]}
+                            onClick={goToUserDetails}
                         >
-                            <div
-                                className={classes["profile-card__counters"]}
-                                onClick={goToUserDetails}
+                            {profile.nickname}
+                        </h2>
+
+                        <div className={classes["profile-card__account-btns"]}>
+                            <button
+                                className={
+                                    classes["profile-card__edit-account-btn"]
+                                }
+                                onClick={() => navigate("/edit-account")}
                             >
-                                <h3>Posts</h3>
-                                <p>{profile.posts.length}</p>
-                            </div>
-                            <div className={classes["profile-card__counters"]}>
-                                <h3>Likes</h3>
-                                <p>{profile.likes.length}</p>
-                            </div>
+                                <i class="fa-solid fa-gear"></i>
+                                <p>Edit Account</p>
+                            </button>
+                            <button
+                                className={
+                                    classes["profile-card__edit-account-btn"]
+                                }
+                                onClick={() => {
+                                    auth.logout();
+                                    profile.clearProfile();
+                                }}
+                            >
+                                <i class="fa-solid fa-right-from-bracket"></i>
+                                <p>Log Out</p>
+                            </button>
                         </div>
                     </div>
-                )}
+                    <div
+                        className={classes["profile-card__counters-container"]}
+                    >
+                        <div
+                            className={classes["profile-card__counters"]}
+                            onClick={goToUserDetails}
+                        >
+                            <h3>Posts</h3>
+                            <p>{profile.posts.length}</p>
+                        </div>
+                        <div className={classes["profile-card__counters"]}>
+                            <h3>Likes</h3>
+                            <p>{profile.likes.length}</p>
+                        </div>
+                    </div>
+                </div>
+            )}
         </Section>
     );
 };

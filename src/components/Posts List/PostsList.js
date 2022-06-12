@@ -4,7 +4,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useHttp } from "../../hooks/use-http";
 import PostCard from "../Post Card/PostCard";
 import LoadingSpinner from "../UI/LoadingSpinner";
-import Section from "../UI/Section";
+import Modal from "../UI/Modal";
 
 import classes from "./PostsList.module.css";
 
@@ -50,9 +50,7 @@ const PostsList = (props) => {
                     totalPages: data.totalPages,
                     currentPage: data.currentPage,
                 });
-            } catch (err) {
-                console.log(err);
-            }
+            } catch (err) {}
         };
 
         fetchPosts();
@@ -78,32 +76,36 @@ const PostsList = (props) => {
     };
 
     return (
-        <div className={`${props.className}`}>
-            <h1 className="section-title">{props.title}</h1>
-            <div className={classes["posts-list"]}>
-                {posts.map((post) => {
-                    return (
-                        <PostCard
-                            id={post.id}
-                            key={post.id}
-                            title={post.title}
-                            creator={post.creator}
-                            image={post.image}
+        <>
+            {error && <Modal onClose={clearError}>{error}</Modal>}
+            <div className={`${props.className}`}>
+                {error && <Modal onClose={clearError}>{error}</Modal>}
+                <h1 className="section-title">{props.title}</h1>
+                <div className={classes["posts-list"]}>
+                    {posts.map((post) => {
+                        return (
+                            <PostCard
+                                id={post.id}
+                                key={post.id}
+                                title={post.title}
+                                creator={post.creator}
+                                image={post.image}
+                            />
+                        );
+                    })}
+                </div>
+                <div className="pagination-wrapper">
+                    {paginationData && (
+                        <Pagination
+                            className="pagination"
+                            count={paginationData.totalPages}
+                            page={paginationData.currentPage}
+                            onChange={onChangePageHandler}
                         />
-                    );
-                })}
+                    )}
+                </div>
             </div>
-            <div className="pagination-wrapper">
-                {paginationData && (
-                    <Pagination
-                        className="pagination"
-                        count={paginationData.totalPages}
-                        page={paginationData.currentPage}
-                        onChange={onChangePageHandler}
-                    />
-                )}
-            </div>
-        </div>
+        </>
     );
 };
 

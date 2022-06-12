@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+import Modal from "../../components/UI/Modal";
 import { AuthContext } from "../../context/auth-context";
 import ProfileContext from "../../context/profile-context";
 import { useHttp } from "../../hooks/use-http";
@@ -60,48 +61,51 @@ const LoginPage = (props) => {
     });
 
     return (
-        <div className={props.className}>
-            <h1 className="section-title" style={{ textAlign: "center" }}>
-                Login Form
-            </h1>
-            <form className="form" onSubmit={formik.handleSubmit}>
-                <TextField
-                    label="Nickname"
-                    id="nickname"
-                    name="nickname"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.comment}
-                    autoComplete="off"
-                    margin="normal"
-                />
-                {formik.errors.nickname && formik.touched.nickname && (
-                    <p className="invalid-text">{formik.errors.nickname}</p>
-                )}
-                <TextField
-                    label="Password"
-                    type="password"
-                    id="password"
-                    name="password"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.password}
-                    autoComplete="off"
-                    margin="normal"
-                />
-                {formik.errors.password && formik.touched.password && (
-                    <p className="invalid-text">{formik.errors.password}</p>
-                )}
-                <Button
-                    className="form-btn"
-                    variant="contained"
-                    type="submit"
-                    margin="normal"
-                >
-                    Login
-                </Button>
-            </form>
-        </div>
+        <>
+            {error && <Modal onClose={clearError}>{error}</Modal>}
+            <div className={props.className}>
+                <h1 className="section-title" style={{ textAlign: "center" }}>
+                    Login Form
+                </h1>
+                <form className="form" onSubmit={formik.handleSubmit}>
+                    <TextField
+                        label="Nickname"
+                        id="nickname"
+                        name="nickname"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.comment}
+                        autoComplete="off"
+                        margin="normal"
+                    />
+                    {formik.errors.nickname && formik.touched.nickname && (
+                        <p className="invalid-text">{formik.errors.nickname}</p>
+                    )}
+                    <TextField
+                        label="Password"
+                        type="password"
+                        id="password"
+                        name="password"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.password}
+                        autoComplete="off"
+                        margin="normal"
+                    />
+                    {formik.errors.password && formik.touched.password && (
+                        <p className="invalid-text">{formik.errors.password}</p>
+                    )}
+                    <Button
+                        className="form-btn"
+                        variant="contained"
+                        type="submit"
+                        margin="normal"
+                    >
+                        Login
+                    </Button>
+                </form>
+            </div>
+        </>
     );
 };
 

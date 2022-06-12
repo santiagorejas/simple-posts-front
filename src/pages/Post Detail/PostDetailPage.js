@@ -4,6 +4,7 @@ import { useHttp } from "../../hooks/use-http";
 import PostDetail from "../../components/Post Detail/PostDetail";
 import ProfileContext from "../../context/profile-context";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
+import Modal from "../../components/UI/Modal";
 
 const PostDetailPage = (props) => {
     const { nickname } = useContext(ProfileContext);
@@ -35,6 +36,7 @@ const PostDetailPage = (props) => {
 
     return (
         <>
+            {error && <Modal onClose={clearError}>{error}</Modal>}
             {(postDetail === null || isLoading) && (
                 <div className={props.className}>
                     <LoadingSpinner />

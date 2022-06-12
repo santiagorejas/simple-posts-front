@@ -1,6 +1,7 @@
 import { Button, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import { useContext, useRef, useState } from "react";
+import Modal from "../../components/UI/Modal";
 import { AuthContext } from "../../context/auth-context";
 import ProfileContext from "../../context/profile-context";
 import { useHttp } from "../../hooks/use-http";
@@ -45,42 +46,45 @@ const EditAccountPage = (props) => {
     };
 
     return (
-        <div>
-            <h1 className="section-title" style={{ textAlign: "center" }}>
-                Edit Account
-            </h1>
-            <form className="form" onSubmit={formik.handleSubmit}>
-                <TextField
-                    label="E-mail"
-                    type="email"
-                    id="email"
-                    name="email"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.email}
-                    autoComplete="off"
-                    margin="normal"
-                />
-                <Button onClick={() => fileInput.current.click()}>
-                    Upload File
-                </Button>
-                <input
-                    ref={fileInput}
-                    type="file"
-                    style={{ display: "none" }}
-                    accept=".jpg,.png,.jpeg"
-                    onChange={pickedHandler}
-                />
-                <Button
-                    className="form-btn"
-                    variant="contained"
-                    type="submit"
-                    margin="normal"
-                >
+        <>
+            {error && <Modal onClose={clearError}>{error}</Modal>}
+            <div>
+                <h1 className="section-title" style={{ textAlign: "center" }}>
                     Edit Account
-                </Button>
-            </form>
-        </div>
+                </h1>
+                <form className="form" onSubmit={formik.handleSubmit}>
+                    <TextField
+                        label="E-mail"
+                        type="email"
+                        id="email"
+                        name="email"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.email}
+                        autoComplete="off"
+                        margin="normal"
+                    />
+                    <Button onClick={() => fileInput.current.click()}>
+                        Upload File
+                    </Button>
+                    <input
+                        ref={fileInput}
+                        type="file"
+                        style={{ display: "none" }}
+                        accept=".jpg,.png,.jpeg"
+                        onChange={pickedHandler}
+                    />
+                    <Button
+                        className="form-btn"
+                        variant="contained"
+                        type="submit"
+                        margin="normal"
+                    >
+                        Edit Account
+                    </Button>
+                </form>
+            </div>
+        </>
     );
 };
 

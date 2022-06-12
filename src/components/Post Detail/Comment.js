@@ -4,6 +4,7 @@ import ProfileContext from "../../context/profile-context";
 import { AuthContext } from "../../context/auth-context";
 import { useHttp } from "../../hooks/use-http";
 import { useNavigate } from "react-router-dom";
+import Modal from "../UI/Modal";
 
 const Comment = (props) => {
     const { author, content, image, onRemoveComment, date } = props;
@@ -37,37 +38,40 @@ const Comment = (props) => {
     };
 
     return (
-        <li className={classes["comment"]}>
-            <div className={classes["comment__image-wrapper"]}>
-                <img
-                    className={classes["comment__image"]}
-                    src={`${process.env.REACT_APP_BACKEND_URL}api${image}`}
-                    alt={author}
-                    onClick={() => navigate(`/user/${author}`)}
-                />
-            </div>
-            <div className={classes["comment__text-container"]}>
-                <div>
-                    <h2
-                        className={classes["comment__author-nickname"]}
+        <>
+            {error && <Modal onClose={clearError}>{error}</Modal>}
+            <li className={classes["comment"]}>
+                <div className={classes["comment__image-wrapper"]}>
+                    <img
+                        className={classes["comment__image"]}
+                        src={`${process.env.REACT_APP_BACKEND_URL}api${image}`}
+                        alt={author}
                         onClick={() => navigate(`/user/${author}`)}
-                    >
-                        {author}
-                    </h2>
-                    -
-                    <h2
-                        className={classes["comment__date"]}
-                    >{`${dateFormated} | ${time}`}</h2>
-                    {profileCtx.nickname === author && (
-                        <i
-                            className={`fa-solid fa-trash ${classes["comment__delete-btn"]}`}
-                            onClick={onDeleteCommentHandler}
-                        ></i>
-                    )}
+                    />
                 </div>
-                <p className={classes["comment__content"]}>{content}</p>
-            </div>
-        </li>
+                <div className={classes["comment__text-container"]}>
+                    <div>
+                        <h2
+                            className={classes["comment__author-nickname"]}
+                            onClick={() => navigate(`/user/${author}`)}
+                        >
+                            {author}
+                        </h2>
+                        -
+                        <h2
+                            className={classes["comment__date"]}
+                        >{`${dateFormated} | ${time}`}</h2>
+                        {profileCtx.nickname === author && (
+                            <i
+                                className={`fa-solid fa-trash ${classes["comment__delete-btn"]}`}
+                                onClick={onDeleteCommentHandler}
+                            ></i>
+                        )}
+                    </div>
+                    <p className={classes["comment__content"]}>{content}</p>
+                </div>
+            </li>
+        </>
     );
 };
 

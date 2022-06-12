@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import Modal from "../components/UI/Modal";
 import { useHttp } from "../hooks/use-http";
 import { AuthContext } from "./auth-context";
 import ProfileContext from "./profile-context";
@@ -121,24 +122,27 @@ const LikesContextProvider = (props) => {
     };
 
     return (
-        <ProfileContext.Provider
-            value={{
-                nickname,
-                image,
-                posts,
-                addPost: addPostHandler,
-                removePost: removePostHandler,
-                likes,
-                addLike: addLikeHandler,
-                removeLike: removeLikeHandler,
-                setLikes: setLikesHandler,
-                postIsLiked: postIsLikedHandler,
-                clearProfile: clearProfileHandler,
-                updateProfile: updateProfileHandler,
-            }}
-        >
-            {props.children}
-        </ProfileContext.Provider>
+        <>
+            {error && <Modal onClose={clearError}>{error}</Modal>}
+            <ProfileContext.Provider
+                value={{
+                    nickname,
+                    image,
+                    posts,
+                    addPost: addPostHandler,
+                    removePost: removePostHandler,
+                    likes,
+                    addLike: addLikeHandler,
+                    removeLike: removeLikeHandler,
+                    setLikes: setLikesHandler,
+                    postIsLiked: postIsLikedHandler,
+                    clearProfile: clearProfileHandler,
+                    updateProfile: updateProfileHandler,
+                }}
+            >
+                {props.children}
+            </ProfileContext.Provider>
+        </>
     );
 };
 

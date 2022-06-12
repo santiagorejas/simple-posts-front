@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useHttp } from "../../hooks/use-http";
 import { useAuth } from "../../hooks/auth-hook";
 import { AuthContext } from "../../context/auth-context";
+import Modal from "../../components/UI/Modal";
 
 const SignupPage = (props) => {
     const fileInput = useRef();
@@ -68,71 +69,74 @@ const SignupPage = (props) => {
     };
 
     return (
-        <div className={props.className}>
-            <h1 className="section-title" style={{ textAlign: "center" }}>
-                Signup Form
-            </h1>
-            <form className="form" onSubmit={formik.handleSubmit}>
-                <TextField
-                    label="Nickname"
-                    id="nickname"
-                    name="nickname"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.comment}
-                    autoComplete="off"
-                    margin="normal"
-                />
-                {formik.errors.nickname && formik.touched.nickname && (
-                    <p className="invalid-text">{formik.errors.nickname}</p>
-                )}
-                <TextField
-                    label="E-mail"
-                    id="email"
-                    name="email"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.comment}
-                    autoComplete="off"
-                    margin="normal"
-                />
-                {formik.errors.email && formik.touched.email && (
-                    <p className="invalid-text">{formik.errors.email}</p>
-                )}
-                <TextField
-                    label="Password"
-                    id="password"
-                    name="password"
-                    type="password"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.comment}
-                    autoComplete="off"
-                    margin="normal"
-                />
-                {formik.errors.password && formik.touched.password && (
-                    <p className="invalid-text">{formik.errors.password}</p>
-                )}
-                <Button onClick={() => fileInput.current.click()}>
-                    Upload File
-                </Button>
-                <input
-                    ref={fileInput}
-                    type="file"
-                    style={{ display: "none" }}
-                    accept=".jpg,.png,.jpeg"
-                    onChange={pickedHandler}
-                />
-                <Button
-                    className="form-btn"
-                    variant="contained"
-                    type="submit"
-                    margin="normal"
-                >
-                    Signup
-                </Button>
-            </form>
-        </div>
+        <>
+            {error && <Modal onClose={clearError}>{error}</Modal>}
+            <div className={props.className}>
+                <h1 className="section-title" style={{ textAlign: "center" }}>
+                    Signup Form
+                </h1>
+                <form className="form" onSubmit={formik.handleSubmit}>
+                    <TextField
+                        label="Nickname"
+                        id="nickname"
+                        name="nickname"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.comment}
+                        autoComplete="off"
+                        margin="normal"
+                    />
+                    {formik.errors.nickname && formik.touched.nickname && (
+                        <p className="invalid-text">{formik.errors.nickname}</p>
+                    )}
+                    <TextField
+                        label="E-mail"
+                        id="email"
+                        name="email"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.comment}
+                        autoComplete="off"
+                        margin="normal"
+                    />
+                    {formik.errors.email && formik.touched.email && (
+                        <p className="invalid-text">{formik.errors.email}</p>
+                    )}
+                    <TextField
+                        label="Password"
+                        id="password"
+                        name="password"
+                        type="password"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.comment}
+                        autoComplete="off"
+                        margin="normal"
+                    />
+                    {formik.errors.password && formik.touched.password && (
+                        <p className="invalid-text">{formik.errors.password}</p>
+                    )}
+                    <Button onClick={() => fileInput.current.click()}>
+                        Upload File
+                    </Button>
+                    <input
+                        ref={fileInput}
+                        type="file"
+                        style={{ display: "none" }}
+                        accept=".jpg,.png,.jpeg"
+                        onChange={pickedHandler}
+                    />
+                    <Button
+                        className="form-btn"
+                        variant="contained"
+                        type="submit"
+                        margin="normal"
+                    >
+                        Signup
+                    </Button>
+                </form>
+            </div>
+        </>
     );
 };
 
