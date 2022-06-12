@@ -11,7 +11,6 @@ import NavBar from "./components/NavBar/NavBar";
 
 import "./App.css";
 import LoadingSpinner from "./components/UI/LoadingSpinner";
-import Modal from "./components/UI/Modal";
 
 const PostDetailPage = React.lazy(() =>
     import("./pages/Post Detail/PostDetailPage")
@@ -25,9 +24,7 @@ const UserPostsPage = React.lazy(() =>
     import("./pages/User Detail/UserPostsPage")
 );
 const NotFoundPage = React.lazy(() => import("./pages/Not Found/NotFoundPage"));
-const LikedPostsPage = React.lazy(() =>
-    import("./components/Liked Posts/LikedPostsPage")
-);
+const LikesPage = React.lazy(() => import("./pages/Likes/LikesPage"));
 const EditAccountPage = React.lazy(() =>
     import("./pages/Edit Account/EditAccountPage")
 );
@@ -71,12 +68,12 @@ function App() {
                                 element={<CreatePostPage />}
                             />
                             <Route
-                                path="/user/:uid/likes"
-                                element={<LikedPostsPage />}
-                            />
-                            <Route
                                 path="/user/:uid"
                                 element={<UserPostsPage />}
+                            />
+                            <Route
+                                path="/user/likes/:nickname"
+                                element={<LikesPage />}
                             />
                             <Route path="*" element={<NotFoundPage />} />
                             <Route

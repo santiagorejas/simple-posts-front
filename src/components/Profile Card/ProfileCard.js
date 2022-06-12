@@ -103,7 +103,12 @@ const ProfileCard = (props) => {
                             <h3>Posts</h3>
                             <p>{profile.posts.length}</p>
                         </div>
-                        <div className={classes["profile-card__counters"]}>
+                        <div
+                            className={classes["profile-card__counters"]}
+                            onClick={() =>
+                                navigate(`/user/likes/${profile.nickname}`)
+                            }
+                        >
                             <h3>Likes</h3>
                             <p>{profile.likes.length}</p>
                         </div>
