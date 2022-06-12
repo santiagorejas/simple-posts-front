@@ -9,11 +9,13 @@ import { Button, MenuItem, Select, TextField } from "@mui/material";
 import classes from "./EditPostPage.module.css";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
 import Modal from "../../components/UI/Modal";
+import ProfileContext from "../../context/profile-context";
 
 const EditPostPage = (props) => {
     const postId = useParams().pid;
     const navigate = useNavigate();
     const { userId, token } = useContext(AuthContext);
+    const profile = useContext(ProfileContext);
     const [hasAcces, setHasAcces] = useState(true);
     const { isLoading, error, clearError, sendRequest } = useHttp();
     const formik = useFormik({
@@ -63,7 +65,7 @@ const EditPostPage = (props) => {
                     Authorization: `Bearer ${token}`,
                 }
             );
-
+            profile.removePost(postId);
             navigate("/post");
         } catch (err) {}
     };

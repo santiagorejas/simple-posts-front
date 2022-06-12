@@ -31,9 +31,13 @@ const LikesContextProvider = (props) => {
         }
     }, [sendRequest, auth]);
 
-    const addPostHandler = (post) => {};
+    const addPostHandler = (post) => {
+        setPosts((pre) => [...pre, post]);
+    };
 
-    const removePostHandler = (postId) => {};
+    const removePostHandler = (postId) => {
+        setPosts((pre) => pre.filter((pid) => pid !== postId));
+    };
 
     const addLikeHandler = async (postId) => {
         if (!auth.isLoggedIn) {

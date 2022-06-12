@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-const LikesContext = createContext({
+const ProfileContext = createContext({
     nickname: "",
     image: "",
     posts: [],
@@ -15,4 +15,4 @@ const LikesContext = createContext({
     updateProfile: (nickname, image) => {},
 });
 
-export default LikesContext;
+export default ProfileContext;
