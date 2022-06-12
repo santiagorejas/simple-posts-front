@@ -63,7 +63,7 @@ const PostsList = (props) => {
     if (posts.length === 0) {
         return (
             <div className={`${props.className} section-message`}>
-                <i class="fa-solid fa-file-excel"></i>
+                <i className="fa-solid fa-file-excel"></i>
                 <h1>No posts where found.</h1>
             </div>
         );

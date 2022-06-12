@@ -76,7 +76,7 @@ const ProfileCard = (props) => {
                                 }
                                 onClick={() => navigate("/edit-account")}
                             >
-                                <i class="fa-solid fa-gear"></i>
+                                <i className="fa-solid fa-gear"></i>
                                 <p>Edit Account</p>
                             </button>
                             <button
@@ -88,7 +88,7 @@ const ProfileCard = (props) => {
                                     profile.clearProfile();
                                 }}
                             >
-                                <i class="fa-solid fa-right-from-bracket"></i>
+                                <i className="fa-solid fa-right-from-bracket"></i>
                                 <p>Log Out</p>
                             </button>
                         </div>

@@ -60,7 +60,7 @@ const PostDetail = (props) => {
                         style={heartStyle}
                         onClick={onLikeHandler}
                     >
-                        <i class="fa-solid fa-heart"></i>
+                        <i className="fa-solid fa-heart"></i>
                         <span>Like</span>
                     </button>
                     {profile.nickname === creator.nickname && (
@@ -70,7 +70,7 @@ const PostDetail = (props) => {
                                 navigate(`/post/edit/${props.postId}`)
                             }
                         >
-                            <i class="fa-solid fa-pen"></i>
+                            <i className="fa-solid fa-pen"></i>
                             <span>Edit</span>
                         </button>
                     )}

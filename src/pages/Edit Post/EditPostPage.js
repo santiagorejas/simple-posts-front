@@ -171,14 +171,14 @@ const EditPostPage = (props) => {
                         onClick={deletePost}
                         className={classes["edit-post__btn"]}
                     >
-                        <i class="fa-solid fa-trash"></i>
+                        <i className="fa-solid fa-trash"></i>
                         <span>Delete to post</span>
                     </button>
                     <button
                         onClick={() => navigate(`/post/${postId}`)}
                         className={classes["edit-post__btn"]}
                     >
-                        <i class="fa-solid fa-arrow-left"></i>
+                        <i className="fa-solid fa-arrow-left"></i>
                         <span>Return to post</span>
                     </button>
                 </div>

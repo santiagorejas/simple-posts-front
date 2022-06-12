@@ -71,7 +71,7 @@ const NavBar = (props) => {
                 className={classes["nav-bar__logo"]}
                 onClick={() => navigate("/")}
             >
-                <i class="fa-solid fa-paper-plane"></i>
+                <i className="fa-solid fa-paper-plane"></i>
                 <span>SimplePosts</span>
             </h1>
             <div className={classes["nav-bar__elements"]}>
