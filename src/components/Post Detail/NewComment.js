@@ -22,8 +22,6 @@ const NewComment = (props) => {
                 .required("Required."),
         }),
         onSubmit: async (values, actions) => {
-            console.log("POST ID: " + props.postId);
-
             try {
                 const data = await sendRequest(
                     `${process.env.REACT_APP_BACKEND_URL}api/comment`,
@@ -38,9 +36,7 @@ const NewComment = (props) => {
                     }
                 );
                 props.onNewComment(data.comment);
-            } catch (err) {
-                console.log(err);
-            }
+            } catch (err) {}
 
             actions.resetForm({
                 values: {

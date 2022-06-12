@@ -6,7 +6,6 @@ const Home = (props) => {
     const currentPostName = searchParams.get("name");
 
     const URL = `${process.env.REACT_APP_BACKEND_URL}api/post`;
-    console.log(URL);
 
     const sectionTitle = currentPostName
         ? `Results for '${currentPostName}'`

@@ -35,7 +35,6 @@ const PostsList = (props) => {
             if (currentCategory) params.set("category", currentCategory);
             if (currentPostName) params.set("name", currentPostName);
 
-            console.log(`${URL}?${params.toString()}`);
             let data;
             try {
                 data = await sendRequest(`${URL}?${params.toString()}`);

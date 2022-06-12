@@ -24,7 +24,6 @@ const PostDetailPage = (props) => {
             } catch (err) {}
 
             if (data) setPostDetail(data.post);
-            console.log(data);
         };
 
         fetchPost();

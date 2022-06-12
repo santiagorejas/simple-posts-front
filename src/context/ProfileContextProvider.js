@@ -23,9 +23,7 @@ const LikesContextProvider = (props) => {
                 setImage(data.profile.image);
                 setLikes(data.profile.likes);
                 setPosts(data.profile.posts);
-            } catch (err) {
-                console.log(err);
-            }
+            } catch (err) {}
         };
 
         if (auth.isLoggedIn && auth.userId !== null) {
@@ -42,12 +40,9 @@ const LikesContextProvider = (props) => {
             return;
         }
 
-        console.log(likes);
-
         if (likes.includes(postId)) {
             return;
         }
-        console.log("A1");
 
         setLikes((prev) => [...prev, postId]);
 
@@ -65,7 +60,6 @@ const LikesContextProvider = (props) => {
             );
         } catch (err) {
             setLikes((prev) => prev.filter((p) => p !== postId));
-            console.log(err);
         }
     };
 
@@ -74,13 +68,9 @@ const LikesContextProvider = (props) => {
             return;
         }
 
-        console.log("A11");
-
         if (!likes.includes(postId)) {
             return;
         }
-
-        console.log("A12");
 
         setLikes((prev) => prev.filter((p) => p !== postId));
 
