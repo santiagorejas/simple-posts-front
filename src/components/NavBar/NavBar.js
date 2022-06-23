@@ -70,13 +70,14 @@ const NavBar = (props) => {
             <h1
                 className={classes["nav-bar__logo"]}
                 onClick={() => navigate("/")}
+                data-testid="logo"
             >
                 <i className="fa-solid fa-paper-plane"></i>
                 <span>SimplePosts</span>
             </h1>
             <div className={classes["nav-bar__elements"]}>
                 {!auth.isLoggedIn && (
-                    <div className={classes["nav-bar__element"]}>
+                    <button className={classes["nav-bar__element-btn"]}>
                         <i className="fas fa-sign-in-alt"></i>
                         <NavLink
                             to="login"
@@ -88,10 +89,10 @@ const NavBar = (props) => {
                         >
                             Login
                         </NavLink>
-                    </div>
+                    </button>
                 )}
                 {!auth.isLoggedIn && (
-                    <div className={classes["nav-bar__element"]}>
+                    <button className={classes["nav-bar__element-btn"]}>
                         <i className="fas fa-user-plus"></i>
                         <NavLink
                             to="signup"
@@ -103,10 +104,10 @@ const NavBar = (props) => {
                         >
                             Signup
                         </NavLink>
-                    </div>
+                    </button>
                 )}
                 {auth.isLoggedIn && (
-                    <div className={classes["nav-bar__element"]}>
+                    <button className={classes["nav-bar__element-btn"]}>
                         <i className="fas fa-sign-out-alt"></i>
                         <p
                             onClick={() => {
@@ -116,7 +117,7 @@ const NavBar = (props) => {
                         >
                             Logout
                         </p>
-                    </div>
+                    </button>
                 )}
                 <MaterialUISwitch
                     sx={{ m: 1 }}
